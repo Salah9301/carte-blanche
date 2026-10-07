@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Avant / Après · L'Oriental Couscous</title>
+<meta name="description" content="Comparaison entre le site actuel de L'Oriental Couscous et la proposition de Carte Blanche.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0e1220">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Karla:wght@400;500;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0e1220;--bg2:#121729;--card:#171d33;--line:rgba(220,225,245,.10);--text:#f2eee6;--muted:#a3a8bd;--soft:#d6d6e0;
+  --accent:#e3a33a;--accent2:#f2c06a;--gold:#d9b46a;--gold-soft:rgba(217,180,106,.33);--bad:#e0675a;--good:#6fbf73;
+  --serif:"Marcellus",Georgia,serif;--sans:"Karla",system-ui,sans-serif;--mono:"JetBrains Mono",ui-monospace,monospace;color-scheme:dark}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+html[lang=fr] [data-l=en],html[lang=en] [data-l=fr]{display:none}
+a{color:inherit}
+.wrap{max-width:1240px;margin:0 auto;padding:0 24px}
+header.top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 0}
+.brand{font-family:var(--serif);font-size:1.15rem;text-decoration:none}
+.brand span{font-family:var(--sans);font-size:.6rem;letter-spacing:.3em;color:var(--gold);font-weight:700;margin-left:8px}
+.lang{display:flex;border:1px solid var(--line);border-radius:999px;padding:3px;font-size:.72rem;font-weight:700}
+.lang button{background:none;border:0;color:var(--muted);padding:5px 10px;border-radius:999px;cursor:pointer;font:inherit;letter-spacing:.08em}
+.lang button.on{background:var(--text);color:var(--bg)}
+.intro{text-align:center;padding:56px 0 48px}
+.eyebrow{display:inline-flex;align-items:center;gap:12px;font-size:.75rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent2);font-weight:600}
+.eyebrow::before,.eyebrow::after{content:"";width:28px;height:1px;background:var(--gold)}
+h1{font-family:var(--serif);font-weight:400;font-size:clamp(2.4rem,6vw,4.4rem);line-height:1.05;margin:18px 0 18px;letter-spacing:-.01em}
+h1 em{font-style:normal;color:var(--accent2)}
+.intro p{color:var(--muted);max-width:60ch;margin:0 auto}
+
+.switch{display:none;justify-content:center;gap:8px;margin-bottom:22px}
+.switch button{background:none;border:1px solid var(--line);color:var(--muted);padding:10px 22px;border-radius:999px;font:600 .9rem var(--sans);cursor:pointer}
+.switch button.on{background:var(--accent);border-color:var(--accent);color:#1a1004}
+
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+.side h2{font-family:var(--serif);font-weight:400;font-size:1.7rem;display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.pill{font-family:var(--sans);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;font-weight:700;padding:5px 10px;border-radius:999px}
+.before .pill{background:rgba(224,103,90,.15);color:var(--bad);border:1px solid rgba(224,103,90,.4)}
+.after .pill{background:rgba(111,191,115,.12);color:var(--good);border:1px solid rgba(111,191,115,.4)}
+
+/* browser frames */
+.browser{border-radius:16px;overflow:hidden;border:1px solid var(--line);background:#fff;box-shadow:0 30px 70px rgba(0,0,0,.35)}
+.bar{display:flex;align-items:center;gap:10px;padding:10px 14px;background:#1f2438;border-bottom:1px solid var(--line)}
+.bar i{width:10px;height:10px;border-radius:50%;background:#3a4060;display:inline-block}
+.url{flex:1;margin-left:6px;background:#141829;border-radius:999px;padding:5px 12px;font-size:.72rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.screen{position:relative;height:560px;overflow:hidden}
+
+/* reconstruction of the top of their current page */
+.old{height:100%;overflow:hidden;background:#fff;color:#222;font-family:"Times New Roman",Times,serif;font-size:13px;line-height:1.35;padding:6px 8px}
+.old .n{margin:0 0 6px}
+.old b{font-weight:700}
+.fade{text-align:center;padding-left:16px;padding-right:16px;position:absolute;left:0;right:0;bottom:0;height:150px;background:linear-gradient(transparent,#fff 70%);display:flex;align-items:flex-end;justify-content:center;padding-bottom:18px;font-family:var(--sans);font-size:.8rem;color:#555}
+.count{position:absolute;top:12px;right:12px;background:var(--bad);color:#fff;font:700 .75rem var(--sans);padding:6px 10px;border-radius:999px;box-shadow:0 6px 16px rgba(0,0,0,.25)}
+
+.screen iframe{position:absolute;top:0;left:0;width:200%;height:200%;border:0;transform:scale(.5);transform-origin:0 0;background:var(--bg)}
+
+.points{list-style:none;margin-top:22px;display:grid;gap:12px}
+.points li{display:grid;grid-template-columns:26px 1fr;gap:12px;align-items:start;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;font-size:.92rem;color:var(--soft)}
+.points li b{display:block;color:var(--text);font-weight:600;margin-bottom:2px}
+.ic{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:.85rem}
+.before .ic{background:rgba(224,103,90,.15);color:var(--bad)}
+.after .ic{background:rgba(111,191,115,.15);color:var(--good)}
+.links{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:999px;font-weight:600;font-size:.9rem;text-decoration:none;transition:transform .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:var(--accent);color:#1a1004}
+.btn-ghost{border:1px solid rgba(255,255,255,.28)}
+
+.verdict{margin:64px 0 40px;border:1px solid var(--gold-soft);border-radius:24px;padding:40px;background:radial-gradient(circle at 50% 120%,rgba(79,179,169,.18),transparent 60%),var(--card);text-align:center}
+.verdict h3{font-family:var(--serif);font-weight:400;font-size:clamp(1.6rem,3.4vw,2.3rem);margin-bottom:12px}
+.verdict p{color:var(--muted);max-width:62ch;margin:0 auto 22px}
+.verdict .links{justify-content:center}
+footer{border-top:1px solid var(--line);padding:28px 0 40px;font-size:.78rem;color:var(--muted)}
+footer a{color:var(--accent2)}
+
+@media (max-width:900px){
+  .switch{display:flex}
+  .compare{grid-template-columns:1fr}
+  .compare[data-show=before] .after,.compare[data-show=after] .before{display:none}
+  .screen{height:520px}
+}
+@media (max-width:600px){.wrap{padding:0 16px}.verdict{padding:28px 18px}.screen{height:460px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="../../">Carte Blanche <span>CAEN</span></a>
+    <div class="lang"><button data-lang="fr" class="on">FR</button><button data-lang="en">EN</button></div>
+  </header>
+
+  <section class="intro">
+    <p class="eyebrow"><span data-l="fr">Avant / Après</span><span data-l="en">Before / After</span></p>
+    <h1><span data-l="fr">L'Oriental Couscous : <em>le même restaurant, un autre site.</em></span><span data-l="en">L'Oriental Couscous: <em>same restaurant, a new website.</em></span></h1>
+    <p><span data-l="fr">Le restaurant a déjà un site, mais il affiche des erreurs dès l'ouverture et cache sa carte dans des PDF. Voici ce qu'on propose à la place.</span><span data-l="en">The restaurant already has a website, but it shows errors as soon as it opens and hides its menu in PDFs. Here is what we propose instead.</span></p>
+  </section>
+
+  <div class="switch" role="tablist">
+    <button class="on" data-show="before"><span data-l="fr">Aujourd'hui</span><span data-l="en">Today</span></button>
+    <button data-show="after"><span data-l="fr">Notre proposition</span><span data-l="en">Our proposal</span></button>
+  </div>
+
+  <div class="compare" id="compare" data-show="before">
+    <div class="side before">
+      <h2><span data-l="fr">Aujourd'hui</span><span data-l="en">Today</span> <span class="pill"><span data-l="fr">Site actuel</span><span data-l="en">Current site</span></span></h2>
+      <div class="browser">
+        <div class="bar"><i></i><i></i><i></i><span class="url">oriental-couscous.fr</span></div>
+        <div class="screen">
+          <div class="old" id="old" aria-label="Reconstitution du haut de la page d'accueil actuelle"></div>
+          <span class="count">34 <span data-l="fr">erreurs</span><span data-l="en">errors</span></span>
+          <div class="fade"><span data-l="fr">Reconstitution fidèle du haut de la page, relevée le 7 octobre 2026</span><span data-l="en">Faithful reconstruction of the top of the page, checked on 7 October 2026</span></div>
+        </div>
+      </div>
+      <ul class="points">
+        <li><span class="ic">!</span><span><b><span data-l="fr">34 messages d'erreur en haut de la page</span><span data-l="en">34 error messages at the top of the page</span></b><span data-l="fr">La licence d'une extension WordPress (Elementor Pro) n'est plus valide. Le visiteur voit le code avant de voir un plat.</span><span data-l="en">A WordPress plugin licence (Elementor Pro) is no longer valid. Visitors see code before they see any food.</span></span></li>
+        <li><span class="ic">!</span><span><b><span data-l="fr">L'adresse interne du serveur est affichée</span><span data-l="en">The server's internal path is exposed</span></b><span data-l="fr">Chaque message révèle le chemin des fichiers sur l'hébergeur, ce qu'un site sain ne montre jamais.</span><span data-l="en">Each message reveals where the files live on the host, which a healthy site never shows.</span></span></li>
+        <li><span class="ic">!</span><span><b><span data-l="fr">Une carte éclatée en PDF</span><span data-l="en">A menu split into PDFs</span></b><span data-l="fr">Restaurant, boissons, desserts, à emporter : il faut ouvrir plusieurs fichiers, peu lisibles sur téléphone.</span><span data-l="en">Restaurant, drinks, desserts, takeaway: several files to open, hard to read on a phone.</span></span></li>
+        <li><span class="ic">!</span><span><b><span data-l="fr">Carte anglaise de janvier 2023</span><span data-l="en">English menu from January 2023</span></b><span data-l="fr">Les touristes du port tombent sur des prix vieux de plus de trois ans.</span><span data-l="en">Tourists from the marina find prices more than three years old.</span></span></li>
+      </ul>
+      <div class="links"><a class="btn btn-ghost" href="https://oriental-couscous.fr/" target="_blank" rel="noopener"><span data-l="fr">Voir le site actuel</span><span data-l="en">See the current site</span> ↗</a></div>
+    </div>
+
+    <div class="side after">
+      <h2><span data-l="fr">Notre proposition</span><span data-l="en">Our proposal</span> <span class="pill">Carte Blanche</span></h2>
+      <div class="browser">
+        <div class="bar"><i></i><i></i><i></i><span class="url">oriental-couscous · Carte Blanche</span></div>
+        <div class="screen"><iframe src="../index.html" title="Proposition de site pour L'Oriental Couscous" loading="lazy" tabindex="-1"></iframe></div>
+      </div>
+      <ul class="points">
+        <li><span class="ic">✓</span><span><b><span data-l="fr">Zéro erreur, zéro extension</span><span data-l="en">No errors, no plugins</span></b><span data-l="fr">Un site léger en une seule page, sans licence à renouveler ni mise à jour qui casse.</span><span data-l="en">A light one-page site, with no licence to renew and no update that breaks it.</span></span></li>
+        <li><span class="ic">✓</span><span><b><span data-l="fr">La carte lisible en un geste</span><span data-l="en">The menu in one tap</span></b><span data-l="fr">Couscous, menus, entrées et desserts dans une carte plein écran, pensée pour le téléphone.</span><span data-l="en">Couscous, menus, starters and desserts in a full-screen menu built for phones.</span></span></li>
+        <li><span class="ic">✓</span><span><b><span data-l="fr">Français et anglais, toujours à jour</span><span data-l="en">French and English, always in sync</span></b><span data-l="fr">Un seul bouton FR / EN : les deux langues affichent les mêmes plats et les mêmes prix.</span><span data-l="en">One FR / EN switch: both languages show the same dishes and prices.</span></span></li>
+        <li><span class="ic">✓</span><span><b><span data-l="fr">Ouvert ou fermé, en direct</span><span data-l="en">Open or closed, live</span></b><span data-l="fr">Les horaires du jour, un bouton Appeler et un bouton Itinéraire toujours à portée de pouce.</span><span data-l="en">Today's hours, plus Call and Directions buttons always under your thumb.</span></span></li>
+      </ul>
+      <div class="links"><a class="btn btn-primary" href="../"><span data-l="fr">Ouvrir la proposition</span><span data-l="en">Open the proposal</span> →</a></div>
+    </div>
+  </div>
+
+  <div class="verdict">
+    <h3><span data-l="fr">Votre cuisine mérite mieux qu'un message d'erreur.</span><span data-l="en">Your cooking deserves better than an error message.</span></h3>
+    <p><span data-l="fr">On garde votre histoire, votre équipe et votre carte. On remplace le reste par un site rapide, beau et simple à mettre à jour.</span><span data-l="en">We keep your story, your team and your menu. We replace the rest with a site that is fast, beautiful and easy to update.</span></p>
+    <div class="links"><a class="btn btn-primary" href="tel:+33634962643"><span data-l="fr">Parler à Hamza</span><span data-l="en">Talk to Hamza</span> · 06 34 96 26 43</a><a class="btn btn-ghost" href="../../"><span data-l="fr">Découvrir Carte Blanche</span><span data-l="en">About Carte Blanche</span></a></div>
+  </div>
+</div>
+<footer><div class="wrap"><span data-l="fr">Document de présentation préparé par <a href="../../">Carte Blanche</a>. Constats relevés le 7 octobre 2026 sur oriental-couscous.fr ; le site actuel peut avoir changé depuis. La proposition n'est pas encore validée par le restaurant.</span><span data-l="en">Presentation prepared by <a href="../../">Carte Blanche</a>. Findings checked on 7 October 2026 on oriental-couscous.fr; the current site may have changed since. The proposal is not yet approved by the restaurant.</span></div></footer>
+
+<script>
+// Reconstruct the PHP notices that open the current homepage (text checked on 7 Oct 2026).
+const notice = '<p class="n"><br><b>Notice</b>: Undefined index: license in <b>/home/csfxkfi/www/wp-content/plugins/elementor-pro/license/api.php</b> on line <b>361</b><br></p>';
+document.getElementById('old').innerHTML = notice.repeat(34);
+
+let lang = 'fr';
+try { lang = localStorage.getItem('oc-ba-lang') === 'en' ? 'en' : 'fr'; } catch(e){}
+function setLang(l){ lang = l; document.documentElement.lang = l;
+  document.querySelectorAll('.lang button').forEach(b => b.classList.toggle('on', b.dataset.lang === l));
+  try { localStorage.setItem('oc-ba-lang', l); } catch(e){} }
+document.querySelectorAll('.lang button').forEach(b => b.addEventListener('click', () => setLang(b.dataset.lang)));
+setLang(lang);
+
+const cmp = document.getElementById('compare');
+document.querySelectorAll('.switch button').forEach(b => b.addEventListener('click', () => {
+  cmp.dataset.show = b.dataset.show;
+  document.querySelectorAll('.switch button').forEach(x => x.classList.toggle('on', x === b));
+}));
+</script>
+</body>
+</html>
