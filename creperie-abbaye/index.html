@@ -5,118 +5,221 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Crêperie de l&#x27;Abbaye · Caen</title>
 <meta name="description" content="Crêperie de l&#x27;Abbaye, Crêperie normande à Caen. Démo conçue par Carte Blanche.">
+<meta name="theme-color" content="#fbf6ea">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Work+Sans:wght@400;500;600&display=swap">
 <style>
-:root{--bg:#fbf6ea;--fg:#173a7a;--accent:#c9822e;--soft:#e9eef8;--line:rgba(23,58,122,.2);--display:"Young Serif",Georgia,serif;--body:"Work Sans",system-ui,sans-serif;--g:clamp(16px,4vw,48px)}
+:root{--bg:#fbf6ea;--fg:#173a7a;--accent:#c9822e;--soft:#e9eef8;--line:rgba(23,58,122,.2);--gold:#9a5f1c;--display:"Young Serif",Georgia,serif;--body:"Work Sans",system-ui,sans-serif;--g:clamp(18px,4.5vw,56px)}
 *{box-sizing:border-box}html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--fg);font:400 17px/1.65 var(--body);-webkit-font-smoothing:antialiased}
+body{margin:0;background:var(--bg);color:var(--fg);font:400 17px/1.7 var(--body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:100;opacity:.07;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 img,svg{max-width:100%;display:block}a{color:inherit}
-:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 html:not([lang="en"]) [data-l="en"],html[lang="en"] [data-l="fr"]{display:none!important}
-.wrap{max-width:1180px;margin:0 auto;padding-inline:var(--g)}
-.demo{background:var(--fg);color:var(--bg);font:500 13px/1.4 var(--body);text-align:center;padding:8px var(--g)}
+.wrap{max-width:1200px;margin:0 auto;padding-inline:var(--g)}
+.demo{background:var(--fg);color:var(--bg);font:500 12px/1.4 var(--body);text-align:center;padding:7px var(--g);letter-spacing:.02em}
 .demo a{font-weight:700}
-.top{position:sticky;top:0;z-index:10;background:var(--bg);border-bottom:1px solid var(--line)}
-.top .wrap{display:flex;align-items:center;gap:20px;padding-block:14px}
-.brand{font:600 24px/1 var(--display);text-decoration:none}
-.top nav{display:flex;gap:22px;margin-left:auto}.top nav a{text-decoration:none;font-weight:500;font-size:15px}.top nav a:hover{color:var(--accent)}
-.lang{display:flex;border:1.5px solid currentColor;border-radius:99px;overflow:hidden}
-.lang button{all:unset;cursor:pointer;font:600 12px/1 var(--body);padding:7px 10px}
+.top{position:sticky;top:0;z-index:30;transition:background .35s,border-color .35s,box-shadow .35s;border-bottom:1px solid transparent}
+.top.solid{background:var(--bg);border-color:var(--line);box-shadow:0 10px 30px -20px rgba(0,0,0,.4)}
+.top .wrap{display:flex;align-items:center;gap:22px;padding-block:16px}
+.brand{font:600 24px/1 var(--display);text-decoration:none;letter-spacing:.01em}
+.top nav{display:flex;gap:26px;margin-left:auto}
+.top nav a,.top nav button{all:unset;cursor:pointer;font-weight:500;font-size:14px;letter-spacing:.04em;position:relative}
+.top nav a::after,.top nav button::after{content:"";position:absolute;left:0;right:100%;bottom:-4px;height:1px;background:var(--gold);transition:right .3s}
+.top nav a:hover::after,.top nav button:hover::after{right:0}
+.lang{display:flex;border:1px solid var(--line);border-radius:99px;overflow:hidden}
+.lang button{all:unset;cursor:pointer;font:600 11px/1 var(--body);letter-spacing:.1em;padding:7px 10px}
 .lang button[aria-pressed="true"]{background:var(--fg);color:var(--bg)}
-.btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font:600 15px/1 var(--body);padding:14px 22px;border-radius:var(--r,99px);background:var(--accent);color:#fff;border:0;cursor:pointer}
-.btn.alt{background:transparent;color:var(--fg);box-shadow:inset 0 0 0 1.5px var(--fg)}
-.btn:hover{filter:brightness(1.08)}
-.hero{padding-block:clamp(40px,7vw,100px)}
-.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(24px,5vw,70px);align-items:center}
-.kicker{font:600 12px/1 var(--body);letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
-h1{margin:16px 0 0;font:var(--h1w,600) clamp(48px,7.5vw,104px)/.95 var(--display);text-wrap:balance;letter-spacing:var(--h1ls,-.01em)}
+.btn{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font:600 15px/1 var(--body);padding:16px 26px;border-radius:var(--r,99px);background:var(--accent);color:#fff;border:0;cursor:pointer;transition:transform .25s,box-shadow .25s,background .25s;box-shadow:0 12px 30px -14px var(--accent)}
+.btn:hover{transform:translateY(-2px);box-shadow:0 18px 36px -14px var(--accent)}
+.btn.alt{background:transparent;color:inherit;box-shadow:inset 0 0 0 1px currentColor}
+.btn.alt:hover{box-shadow:inset 0 0 0 1px var(--gold);color:var(--gold)}
+.kicker{display:inline-flex;align-items:center;gap:12px;font:600 11px/1 var(--body);letter-spacing:.24em;text-transform:uppercase;color:var(--gold)}
+.kicker::before{content:"";width:28px;height:1px;background:currentColor}
+.hero{position:relative;min-height:min(88vh,860px);display:grid;align-items:center;padding-block:clamp(30px,6vw,80px);overflow:hidden}
+.hero::before{content:"";position:absolute;inset:auto -20% -40% 30%;height:80%;background:radial-gradient(closest-side,var(--soft),transparent);opacity:.9}
+.hero .wrap{position:relative;display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(24px,5vw,70px);align-items:center;width:100%}
+.est{font:500 13px/1 var(--body);letter-spacing:.3em;text-transform:uppercase;opacity:.7;margin-top:22px}
+h1{margin:18px 0 0;font:var(--h1w,600) clamp(52px,8vw,118px)/.93 var(--display);text-wrap:balance;letter-spacing:var(--h1ls,-.015em)}
 h1 em{font-style:var(--emstyle,italic);color:var(--accent)}
-.lede{max-width:44ch;margin:24px 0 30px;font-size:clamp(17px,1.5vw,19px);opacity:.9}
-.row{display:flex;flex-wrap:wrap;gap:12px}
-.art{max-width:440px;justify-self:center;width:100%}
-section{scroll-margin-top:70px}
-.sec{padding-block:clamp(60px,9vw,110px)}
-h2{margin:10px 0 clamp(26px,4vw,44px);font:var(--h1w,600) clamp(36px,5vw,64px)/1 var(--display);text-wrap:balance}
-.sigs{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.sig{background:var(--soft);border-radius:var(--rc,18px);padding:26px;display:flex;flex-direction:column;gap:8px}
-.sig h3{margin:0;font:600 24px/1.1 var(--display)}.sig p{margin:0;opacity:.8;flex:1}
-.sig .p{font:700 18px/1 var(--body);color:var(--accent);font-variant-numeric:tabular-nums}
+.lede{max-width:42ch;margin:26px 0 34px;font-size:clamp(17px,1.5vw,19px);opacity:.88}
+.row{display:flex;flex-wrap:wrap;gap:14px}
+.art{position:relative;max-width:500px;justify-self:center;width:100%;animation:float 9s ease-in-out infinite}
+.art::before{content:"";position:absolute;inset:-6%;border:1px solid var(--gold);border-radius:50%;opacity:.45}
+.art::after{content:"";position:absolute;inset:-12%;border:1px dashed var(--gold);border-radius:50%;opacity:.25;animation:spin 60s linear infinite}
+@keyframes float{50%{transform:translateY(-12px) rotate(-1.5deg)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+.h-in>*{animation:up .9s cubic-bezier(.2,.7,.2,1) both}
+.h-in>*:nth-child(2){animation-delay:.08s}.h-in>*:nth-child(3){animation-delay:.16s}.h-in>*:nth-child(4){animation-delay:.24s}.h-in>*:nth-child(5){animation-delay:.32s}
+@keyframes up{from{transform:translateY(18px)}to{transform:none}}
+.stats{border-block:1px solid var(--line)}
+.stats .wrap{display:grid;grid-template-columns:repeat(3,1fr)}
+.stat{padding:26px 18px;text-align:center}
+.stat+.stat{border-left:1px solid var(--line)}
+.stat b{display:block;font:var(--h1w,600) clamp(34px,4vw,52px)/1 var(--display);color:var(--gold);font-variant-numeric:tabular-nums}
+.stat span{font-size:13px;letter-spacing:.06em;opacity:.75}
+.marq{overflow:hidden;border-bottom:1px solid var(--line);padding-block:18px}
+.marq .t{display:flex;width:max-content;animation:roll 40s linear infinite}
+.marq span{font:var(--h1w,500) 24px/1 var(--display);white-space:nowrap;padding-right:1.4em;opacity:.85}
+.marq span::after{content:"✿";color:var(--gold);padding-left:1.4em}
+@keyframes roll{to{transform:translateX(-50%)}}
+section{scroll-margin-top:80px;overflow-x:clip}
+.sec{padding-block:clamp(70px,10vw,130px)}
+.sh{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:18px;margin-bottom:clamp(30px,5vw,56px)}
+h2{margin:14px 0 0;font:var(--h1w,600) clamp(38px,5.4vw,72px)/1 var(--display);text-wrap:balance}
+.sigs{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.sig{position:relative;background:var(--soft);border-radius:var(--rc,20px);padding:30px 28px 28px;display:flex;flex-direction:column;gap:10px;overflow:hidden;transition:transform .35s}
+.sig:hover{transform:translateY(-6px)}
+.sig .no{font:500 12px/1 var(--body);letter-spacing:.2em;color:var(--gold)}
+.sig .disc{width:74px;height:74px;border-radius:50%;background:radial-gradient(circle at 35% 35%,var(--gold),var(--accent));margin-bottom:8px;box-shadow:0 14px 30px -12px var(--accent)}
+.sig h3{margin:0;font:600 26px/1.1 var(--display)}.sig p{margin:0;opacity:.78;flex:1}
+.sig .p{font:600 18px/1 var(--body);color:var(--gold);font-variant-numeric:tabular-nums}
 .alt-bg{background:var(--soft)}
-.menu{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,4vw,48px)}
-.menu h3{margin:0 0 14px;font:600 26px/1 var(--display);padding-bottom:12px;border-bottom:2px solid var(--accent)}
+.menu{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,4vw,52px)}
+.menu h3{margin:0 0 16px;font:600 26px/1 var(--display);padding-bottom:14px;border-bottom:1px solid var(--gold)}
 .menu ul{list-style:none;margin:0;padding:0}
-.menu li{display:flex;align-items:baseline;gap:10px;padding:11px 0;border-bottom:1px dashed var(--line)}
+.menu li{display:flex;align-items:baseline;gap:10px;padding:12px 0}
 .menu li span.n{min-width:0}
 .menu li i{flex:1;border-bottom:1px dotted var(--line);transform:translateY(-4px);min-width:12px}
-.menu li b{font-variant-numeric:tabular-nums;white-space:nowrap}
-.story .wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,70px)}
-.story blockquote{margin:0;font:500 clamp(24px,3vw,36px)/1.3 var(--display);font-style:var(--emstyle,italic)}
-.info{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.card{border:1.5px solid var(--line);border-radius:var(--rc,18px);padding:24px}
-.card h3{margin:0 0 12px;font:600 22px/1 var(--display)}
-.hrs{display:grid;grid-template-columns:auto 1fr;gap:6px 18px;font-variant-numeric:tabular-nums}
-.phone{font:600 22px/1.3 var(--body);user-select:all}
-footer{border-top:1px solid var(--line);padding-block:26px;font-size:14px}
-footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
+.menu li b{font-weight:600;color:var(--gold);font-variant-numeric:tabular-nums;white-space:nowrap}
+.menu-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;margin-top:36px}
+.menu-foot p{margin:0;font-size:14px;opacity:.7}
+.story .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(30px,6vw,90px);align-items:center}
+.story blockquote{margin:0;font:500 clamp(26px,3.2vw,40px)/1.3 var(--display);font-style:var(--emstyle,italic);position:relative}
+.story blockquote::before{content:"“";position:absolute;left:-.1em;top:-.55em;font-size:3.2em;color:var(--gold);opacity:.35;line-height:1}
+.story cite{display:block;margin-top:22px;font:500 13px/1 var(--body);letter-spacing:.2em;text-transform:uppercase;font-style:normal;color:var(--gold)}
+.res{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,70px);align-items:start}
+form{display:grid;grid-template-columns:1fr 1fr;gap:14px;background:var(--bg);border:1px solid var(--line);border-radius:var(--rc,20px);padding:clamp(20px,3vw,34px)}
+label{display:grid;gap:6px;font:600 11px/1 var(--body);letter-spacing:.16em;text-transform:uppercase;opacity:.9}
+input,select{font:500 16px/1.3 var(--body);color:var(--fg);background:transparent;border:0;border-bottom:1px solid var(--line);padding:10px 2px;width:100%;border-radius:0}
+input:focus,select:focus{outline:none;border-color:var(--gold)}
+select option{color:#111}
+form .full{grid-column:1/-1}
+.ok{grid-column:1/-1;font-size:14px;color:var(--gold);min-height:1em;margin:0}
+.info{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.card{border:1px solid var(--line);border-radius:var(--rc,20px);padding:28px}
+.card h3{margin:0 0 14px;font:600 24px/1 var(--display)}
+.hrs{display:grid;grid-template-columns:auto 1fr;gap:8px 20px;font-variant-numeric:tabular-nums}
+.phone{font:600 22px/1.3 var(--body);user-select:all;margin:0}
+footer{padding-block:50px 30px;border-top:1px solid var(--line)}
+footer .big{font:var(--h1w,600) clamp(48px,11vw,160px)/.9 var(--display);text-align:center;opacity:.12;white-space:nowrap;overflow:hidden}
+footer .wrap.f{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;font-size:14px;margin-top:26px}
+.rv{transition:transform .9s cubic-bezier(.2,.7,.2,1)}
+.js .rv:not(.in){transform:translateY(26px)}
+/* full-screen menu */
+.ov{position:fixed;inset:0;z-index:60;background:var(--bg);display:flex;flex-direction:column;transform:translateY(100%);transition:transform .55s cubic-bezier(.7,0,.2,1);visibility:hidden}
+.ov.open{transform:none;visibility:visible}
+.ov-top{display:flex;align-items:center;gap:16px;padding:18px var(--g);border-bottom:1px solid var(--line)}
+.ov-top .brand{margin-right:auto}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;padding:16px var(--g);border-bottom:1px solid var(--line)}
+.tabs button{all:unset;cursor:pointer;padding:9px 16px;border-radius:99px;border:1px solid var(--line);font-size:14px;font-weight:500}
+.tabs button[aria-selected="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.ov-body{flex:1;overflow:auto;padding:clamp(20px,4vw,50px) var(--g)}
+.ov-body .panel{max-width:760px;margin:0 auto}
+.ov-body h3{font:var(--h1w,600) clamp(36px,5vw,64px)/1 var(--display);margin:0 0 20px}
+.ov-body li{display:flex;align-items:baseline;gap:12px;font-size:19px;padding:16px 0;border-bottom:1px solid var(--line)}
+.ov-body li i{flex:1;border-bottom:1px dotted var(--line);transform:translateY(-5px);min-width:12px}
+.ov-body li b{color:var(--gold);font-weight:600;white-space:nowrap;font-variant-numeric:tabular-nums}
+.ov-body li span.n{min-width:0}
+.ov-body ul{list-style:none;margin:0;padding:0}
 .callbar{display:none}
-.top{background:repeating-linear-gradient(90deg,var(--bg) 0 22px,var(--soft) 22px 44px)}.alt-bg{background:repeating-linear-gradient(90deg,#f7f0de 0 30px,var(--soft) 30px 60px)}.sig{background:#fff;border:2px solid var(--fg);box-shadow:6px 6px 0 var(--fg)}.menu>div{background:#fff;padding:22px;border:2px solid var(--fg);border-radius:14px}.btn{--r:10px}
+.top.solid{background:repeating-linear-gradient(90deg,var(--bg) 0 22px,var(--soft) 22px 44px)}.sig{border:2px solid var(--fg);box-shadow:6px 6px 0 var(--fg)}.btn{--r:10px}
 @media (max-width:860px){
  .top nav{display:none}.lang{margin-left:auto}
- .hero .wrap,.story .wrap{grid-template-columns:1fr}
- .art{max-width:300px;grid-row:1}
+ .hero{min-height:0}
+ .hero .wrap,.story .wrap,.res{grid-template-columns:1fr}
+ .art{max-width:270px;grid-row:1;margin-block:20px 10px}
  .sigs,.menu,.info{grid-template-columns:1fr}
- .callbar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:20;gap:10px;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));background:var(--bg);border-top:1px solid var(--line)}
- .callbar .btn{flex:1;justify-content:center}
- body{padding-bottom:76px}
+ .stats .wrap{grid-template-columns:1fr}.stat+.stat{border-left:0;border-top:1px solid var(--line)}
+ form{grid-template-columns:1fr 1fr}
+ .callbar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:40;gap:10px;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));background:var(--bg);border-top:1px solid var(--line)}
+ .callbar .btn{flex:1;justify-content:center;padding:14px 10px}
+ body{padding-bottom:78px}
 }
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}.js .rv:not(.in){transform:none}}
 </style>
 </head>
 <body>
 <div class="demo"><span data-l="fr">Démo · restaurant fictif conçu par <a href="../">Carte Blanche</a>, studio web pour restaurants à Caen.</span><span data-l="en">Demo · fictional restaurant designed by <a href="../">Carte Blanche</a>, a web studio for restaurants in Caen.</span></div>
-<header class="top"><div class="wrap">
+<header class="top" id="top"><div class="wrap">
  <a class="brand" href="#">Crêperie de l&#x27;Abbaye</a>
- <nav><a href="#carte"><span data-l="fr">La carte</span><span data-l="en">Menu</span></a><a href="#histoire"><span data-l="fr">Notre histoire</span><span data-l="en">Our story</span></a><a href="#infos"><span data-l="fr">Infos</span><span data-l="en">Visit</span></a></nav>
+ <nav aria-label="Sections"><button type="button" data-open-menu><span data-l="fr">La carte</span><span data-l="en">Menu</span></button><a href="#maison"><span data-l="fr">La maison</span><span data-l="en">Our story</span></a><a href="#reserver"><span data-l="fr">Réserver</span><span data-l="en">Book a table</span></a><a href="#infos"><span data-l="fr">Infos</span><span data-l="en">Visit</span></a></nav>
  <div class="lang" role="group" aria-label="Langue"><button type="button" id="fr" aria-pressed="true">FR</button><button type="button" id="en" aria-pressed="false">EN</button></div>
 </div></header>
 <main>
 <section class="hero"><div class="wrap">
- <div>
+ <div class="h-in">
   <div class="kicker"><span data-l="fr">Crêperie normande</span><span data-l="en">Normandy crêperie</span> · Caen</div>
   <h1><span data-l="fr">Galettes,<br>cidre &amp; <em>beurre salé.</em></span><span data-l="en">Galettes,<br>cider &amp; <em>salted butter.</em></span></h1>
   <p class="lede"><span data-l="fr">Blé noir, beurre d&#x27;Isigny et cidre du Pays d&#x27;Auge. Une crêperie familiale à l&#x27;ombre de l&#x27;Abbaye-aux-Hommes.</span><span data-l="en">Buckwheat, Isigny butter and Pays d&#x27;Auge cider. A family crêperie in the shadow of the Abbaye-aux-Hommes.</span></p>
-  <div class="row"><a class="btn" href="#carte"><span data-l="fr">Voir la carte</span><span data-l="en">See the menu</span></a><a class="btn alt" href="#infos"><span data-l="fr">Horaires & adresse</span><span data-l="en">Hours & address</span></a></div>
+  <div class="row"><button type="button" class="btn" data-open-menu><span data-l="fr">Découvrir la carte</span><span data-l="en">Explore the menu</span> →</button><a class="btn alt" href="#reserver"><span data-l="fr">Réserver</span><span data-l="en">Book a table</span></a></div>
+  <div class="est"><span data-l="fr">Depuis</span><span data-l="en">Since</span> 1998</div>
  </div>
  <div class="art"><svg viewBox="0 0 400 400" aria-hidden="true"><circle cx="200" cy="200" r="175" fill="var(--soft)"/><path d="M60 230 200 90 340 230 200 330z" fill="#d99a3d"/><path d="M60 230 200 90 340 230 200 330z" fill="none" stroke="#b8742a" stroke-width="6"/><rect x="140" y="170" width="120" height="120" transform="rotate(45 200 230)" fill="#f2c26b" opacity=".6"/><circle cx="200" cy="215" r="34" fill="#fffaf0"/><circle cx="200" cy="215" r="15" fill="#f0a500"/><g stroke="var(--fg)" stroke-width="5" opacity=".18"><path d="M20 60h360M20 360h360"/></g></svg></div>
 </div></section>
+<div class="stats"><div class="wrap"><div class="stat rv"><b>1998</b><span><span data-l="fr">Recette de famille</span><span data-l="en">Family recipe</span></span></div><div class="stat rv"><b>100%</b><span><span data-l="fr">Blé noir de Normandie</span><span data-l="en">Normandy buckwheat</span></span></div><div class="stat rv"><b>3</b><span><span data-l="fr">Cidres du Pays d&#x27;Auge</span><span data-l="en">Pays d&#x27;Auge ciders</span></span></div></div></div>
+<div class="marq" aria-hidden="true"><div class="t"><span>La Complète</span><span>La Normande</span><span>La Saint-Jacques</span><span>La Chèvre-miel</span><span>Beurre-sucre</span><span>Caramel beurre salé</span><span>Flambée au calvados</span><span>Bolée de cidre brut</span><span>Pommeau de Normandie</span><span>La Complète</span><span>La Normande</span><span>La Saint-Jacques</span><span>La Chèvre-miel</span><span>Beurre-sucre</span><span>Caramel beurre salé</span><span>Flambée au calvados</span><span>Bolée de cidre brut</span><span>Pommeau de Normandie</span></div></div>
 <section class="sec" id="signatures"><div class="wrap">
- <div class="kicker"><span data-l="fr">Signatures</span><span data-l="en">Signatures</span></div><h2><span data-l="fr">Ce qu'on vient chercher ici</span><span data-l="en">What people come for</span></h2>
- <div class="sigs"><article class="sig"><h3><span data-l="fr">La Normande</span><span data-l="en">La Normande</span></h3><p><span data-l="fr">Camembert, pommes poêlées, andouille de Vire.</span><span data-l="en">Camembert, pan-fried apple, Vire andouille.</span></p><span class="p">13,50 €</span></article><article class="sig"><h3><span data-l="fr">La Complète</span><span data-l="en">La Complète</span></h3><p><span data-l="fr">Jambon, emmental, œuf miroir.</span><span data-l="en">Ham, emmental, sunny-side egg.</span></p><span class="p">9,50 €</span></article><article class="sig"><h3><span data-l="fr">Caramel beurre salé</span><span data-l="en">Salted-butter caramel</span></h3><p><span data-l="fr">Caramel maison, chantilly.</span><span data-l="en">House caramel, whipped cream.</span></p><span class="p">6,50 €</span></article></div>
+ <div class="sh rv"><div><div class="kicker"><span data-l="fr">Signatures</span><span data-l="en">Signatures</span></div><h2><span data-l="fr">Ce qu'on vient chercher ici</span><span data-l="en">What people come for</span></h2></div></div>
+ <div class="sigs"><article class="sig rv"><span class="no">N°1</span><div class="disc" aria-hidden="true"></div><h3><span data-l="fr">La Normande</span><span data-l="en">La Normande</span></h3><p><span data-l="fr">Camembert, pommes poêlées, andouille de Vire.</span><span data-l="en">Camembert, pan-fried apple, Vire andouille.</span></p><span class="p">13,50 €</span></article><article class="sig rv"><span class="no">N°2</span><div class="disc" aria-hidden="true"></div><h3><span data-l="fr">La Complète</span><span data-l="en">La Complète</span></h3><p><span data-l="fr">Jambon, emmental, œuf miroir.</span><span data-l="en">Ham, emmental, sunny-side egg.</span></p><span class="p">9,50 €</span></article><article class="sig rv"><span class="no">N°3</span><div class="disc" aria-hidden="true"></div><h3><span data-l="fr">Caramel beurre salé</span><span data-l="en">Salted-butter caramel</span></h3><p><span data-l="fr">Caramel maison, chantilly.</span><span data-l="en">House caramel, whipped cream.</span></p><span class="p">6,50 €</span></article></div>
 </div></section>
 <section class="sec alt-bg" id="carte"><div class="wrap">
- <div class="kicker"><span data-l="fr">La carte</span><span data-l="en">Menu</span></div><h2><span data-l="fr">Toute la carte</span><span data-l="en">The full menu</span></h2>
- <div class="menu"><div><h3><span data-l="fr">Galettes de blé noir</span><span data-l="en">Buckwheat galettes</span></h3><ul><li><span class="n"><span data-l="fr">La Complète</span><span data-l="en">Ham, cheese, egg</span></span><i></i><b>9,50 €</b></li><li><span class="n"><span data-l="fr">La Normande</span><span data-l="en">Camembert, apple, andouille</span></span><i></i><b>13,50 €</b></li><li><span class="n"><span data-l="fr">La Saint-Jacques</span><span data-l="en">Scallops, leek fondue</span></span><i></i><b>16 €</b></li><li><span class="n"><span data-l="fr">La Chèvre-miel</span><span data-l="en">Goat cheese and honey</span></span><i></i><b>11 €</b></li></ul></div><div><h3><span data-l="fr">Crêpes de froment</span><span data-l="en">Sweet crêpes</span></h3><ul><li><span class="n"><span data-l="fr">Beurre-sucre</span><span data-l="en">Butter and sugar</span></span><i></i><b>4,50 €</b></li><li><span class="n"><span data-l="fr">Caramel beurre salé</span><span data-l="en">Salted-butter caramel</span></span><i></i><b>6,50 €</b></li><li><span class="n"><span data-l="fr">Flambée au calvados</span><span data-l="en">Flambéed with calvados</span></span><i></i><b>8 €</b></li></ul></div><div><h3><span data-l="fr">À boire</span><span data-l="en">Drinks</span></h3><ul><li><span class="n"><span data-l="fr">Bolée de cidre brut</span><span data-l="en">Bowl of dry cider</span></span><i></i><b>4 €</b></li><li><span class="n"><span data-l="fr">Pommeau de Normandie</span><span data-l="en">Pommeau</span></span><i></i><b>5 €</b></li></ul></div></div>
- <p style="margin-top:28px;font-size:14px;opacity:.7"><span data-l="fr">Prix nets, service compris. Carte de démonstration.</span><span data-l="en">Prices include service. Demonstration menu.</span></p>
+ <div class="sh rv"><div><div class="kicker"><span data-l="fr">La carte</span><span data-l="en">Menu</span></div><h2><span data-l="fr">Toute la carte</span><span data-l="en">The full menu</span></h2></div></div>
+ <div class="menu rv"><div><h3><span data-l="fr">Galettes de blé noir</span><span data-l="en">Buckwheat galettes</span></h3><ul><li><span class="n"><span data-l="fr">La Complète</span><span data-l="en">Ham, cheese, egg</span></span><i></i><b>9,50 €</b></li><li><span class="n"><span data-l="fr">La Normande</span><span data-l="en">Camembert, apple, andouille</span></span><i></i><b>13,50 €</b></li><li><span class="n"><span data-l="fr">La Saint-Jacques</span><span data-l="en">Scallops, leek fondue</span></span><i></i><b>16 €</b></li><li><span class="n"><span data-l="fr">La Chèvre-miel</span><span data-l="en">Goat cheese and honey</span></span><i></i><b>11 €</b></li></ul></div><div><h3><span data-l="fr">Crêpes de froment</span><span data-l="en">Sweet crêpes</span></h3><ul><li><span class="n"><span data-l="fr">Beurre-sucre</span><span data-l="en">Butter and sugar</span></span><i></i><b>4,50 €</b></li><li><span class="n"><span data-l="fr">Caramel beurre salé</span><span data-l="en">Salted-butter caramel</span></span><i></i><b>6,50 €</b></li><li><span class="n"><span data-l="fr">Flambée au calvados</span><span data-l="en">Flambéed with calvados</span></span><i></i><b>8 €</b></li></ul></div><div><h3><span data-l="fr">À boire</span><span data-l="en">Drinks</span></h3><ul><li><span class="n"><span data-l="fr">Bolée de cidre brut</span><span data-l="en">Bowl of dry cider</span></span><i></i><b>4 €</b></li><li><span class="n"><span data-l="fr">Pommeau de Normandie</span><span data-l="en">Pommeau</span></span><i></i><b>5 €</b></li></ul></div></div>
+ <div class="menu-foot"><p><span data-l="fr">Prix nets, service compris. Carte de démonstration.</span><span data-l="en">Prices include service. Demonstration menu.</span></p><button type="button" class="btn alt" data-open-menu><span data-l="fr">Ouvrir la carte plein écran</span><span data-l="en">Open the full-screen menu</span> ↗</button></div>
 </div></section>
-<section class="sec story" id="histoire"><div class="wrap">
- <div><div class="kicker"><span data-l="fr">Notre histoire</span><span data-l="en">Our story</span></div><h2><span data-l="fr">La maison</span><span data-l="en">The house</span></h2></div>
- <blockquote><span data-l="fr">La recette de la pâte vient de notre grand-mère. Le blé noir est moulu en Normandie et chaque galette est tournée à la commande.</span><span data-l="en">The batter recipe comes from our grandmother. The buckwheat is milled in Normandy and every galette is made to order.</span></blockquote>
+<section class="sec story" id="maison"><div class="wrap">
+ <div class="art rv" style="max-width:380px;animation:none"><svg viewBox="0 0 400 400" aria-hidden="true"><circle cx="200" cy="200" r="175" fill="var(--soft)"/><path d="M60 230 200 90 340 230 200 330z" fill="#d99a3d"/><path d="M60 230 200 90 340 230 200 330z" fill="none" stroke="#b8742a" stroke-width="6"/><rect x="140" y="170" width="120" height="120" transform="rotate(45 200 230)" fill="#f2c26b" opacity=".6"/><circle cx="200" cy="215" r="34" fill="#fffaf0"/><circle cx="200" cy="215" r="15" fill="#f0a500"/><g stroke="var(--fg)" stroke-width="5" opacity=".18"><path d="M20 60h360M20 360h360"/></g></svg></div>
+ <div class="rv"><div class="kicker"><span data-l="fr">La maison</span><span data-l="en">Our story</span></div><blockquote style="margin-top:34px"><span data-l="fr">La recette de la pâte vient de notre grand-mère. Le blé noir est moulu en Normandie et chaque galette est tournée à la commande.</span><span data-l="en">The batter recipe comes from our grandmother. The buckwheat is milled in Normandy and every galette is made to order.</span><cite>— <span data-l="fr">La crêpière</span><span data-l="en">The crêpe maker</span>, Crêperie de l&#x27;Abbaye</cite></blockquote></div>
 </div></section>
-<section class="sec alt-bg" id="infos"><div class="wrap">
- <div class="kicker"><span data-l="fr">Infos</span><span data-l="en">Visit</span></div><h2><span data-l="fr">Venir nous voir</span><span data-l="en">Come and see us</span></h2>
+<section class="sec alt-bg" id="reserver"><div class="wrap res">
+ <div class="rv"><div class="kicker"><span data-l="fr">Réservation</span><span data-l="en">Reservations</span></div><h2><span data-l="fr">Votre table vous attend</span><span data-l="en">Your table is waiting</span></h2><p style="max-width:40ch;opacity:.85;margin-top:20px"><span data-l="fr">Blé noir, beurre d&#x27;Isigny et cidre du Pays d&#x27;Auge. Une crêperie familiale à l&#x27;ombre de l&#x27;Abbaye-aux-Hommes.</span><span data-l="en">Buckwheat, Isigny butter and Pays d&#x27;Auge cider. A family crêperie in the shadow of the Abbaye-aux-Hommes.</span></p></div>
+ <form id="resa" class="rv" novalidate>
+  <label for="r-date"><span data-l="fr">Date</span><span data-l="en">Date</span><input id="r-date" type="date" required></label>
+  <label for="r-time"><span data-l="fr">Heure</span><span data-l="en">Time</span><select id="r-time"><option>12:00</option><option>12:30</option><option>13:00</option><option>19:00</option><option selected>19:30</option><option>20:00</option><option>20:30</option><option>21:00</option></select></label>
+  <label for="r-guests"><span data-l="fr">Couverts</span><span data-l="en">Guests</span><select id="r-guests"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>8</option></select></label>
+  <label for="r-name"><span data-l="fr">Nom</span><span data-l="en">Name</span><input id="r-name" autocomplete="name" required></label>
+  <button type="submit" class="btn full" style="justify-content:center;margin-top:8px"><span data-l="fr">Demander une table</span><span data-l="en">Request a table</span></button>
+  <p class="ok full" id="r-ok" aria-live="polite"></p>
+ </form>
+</div></section>
+<section class="sec" id="infos"><div class="wrap">
+ <div class="sh rv"><div><div class="kicker"><span data-l="fr">Infos</span><span data-l="en">Visit</span></div><h2><span data-l="fr">Venir nous voir</span><span data-l="en">Come and see us</span></h2></div></div>
  <div class="info">
-  <div class="card"><h3><span data-l="fr">Horaires</span><span data-l="en">Opening hours</span></h3><div class="hrs"><span><span data-l="fr">Mer – Dim</span><span data-l="en">Wed – Sun</span></span><span>12:00–14:30 · 18:30–21:30</span><span><span data-l="fr">Lun – Mar</span><span data-l="en">Mon – Tue</span></span><span>Fermé / Closed</span></div></div>
-  <div class="card"><h3><span data-l="fr">Adresse</span><span data-l="en">Address</span></h3><p style="margin:0 0 10px">Près de l'Abbaye-aux-Hommes · 14000 Caen</p><p class="phone">02 31 XX XX XX</p><p style="font-size:13px;opacity:.7;margin:4px 0 16px"><span data-l="fr">Numéro fictif : ce restaurant est un concept.</span><span data-l="en">Placeholder number: this restaurant is a concept.</span></p><a class="btn" href="https://www.google.com/maps/search/?api=1&query=Abbaye+aux+Hommes+Caen" target="_blank" rel="noopener"><span data-l="fr">Itinéraire</span><span data-l="en">Directions</span> ↗</a></div>
+  <div class="card rv"><h3><span data-l="fr">Horaires</span><span data-l="en">Opening hours</span></h3><div class="hrs"><span><span data-l="fr">Mer – Dim</span><span data-l="en">Wed – Sun</span></span><span>12:00–14:30 · 18:30–21:30</span><span><span data-l="fr">Lun – Mar</span><span data-l="en">Mon – Tue</span></span><span>Fermé / Closed</span></div></div>
+  <div class="card rv"><h3><span data-l="fr">Adresse</span><span data-l="en">Address</span></h3><p style="margin:0 0 10px">Près de l'Abbaye-aux-Hommes · 14000 Caen</p><p class="phone">02 31 XX XX XX</p><p style="font-size:13px;opacity:.7;margin:4px 0 18px"><span data-l="fr">Numéro fictif : ce restaurant est un concept.</span><span data-l="en">Placeholder number: this restaurant is a concept.</span></p><a class="btn" href="https://www.google.com/maps/search/?api=1&query=Abbaye+aux+Hommes+Caen" target="_blank" rel="noopener"><span data-l="fr">Itinéraire</span><span data-l="en">Directions</span> ↗</a></div>
  </div>
 </div></section>
 </main>
-<footer><div class="wrap"><span>© 2026 Crêperie de l&#x27;Abbaye · Caen</span><span><span data-l="fr">Site conçu par</span><span data-l="en">Website by</span> <a href="../">Carte Blanche</a></span></div></footer>
-<div class="callbar"><a class="btn" href="#carte"><span data-l="fr">La carte</span><span data-l="en">Menu</span></a><a class="btn alt" href="https://www.google.com/maps/search/?api=1&query=Abbaye+aux+Hommes+Caen" target="_blank" rel="noopener"><span data-l="fr">Itinéraire</span><span data-l="en">Directions</span></a></div>
+<footer><div class="big" aria-hidden="true">Crêperie de l&#x27;Abbaye</div><div class="wrap f"><span>© 2026 Crêperie de l&#x27;Abbaye · Caen</span><span><span data-l="fr">Site conçu par</span><span data-l="en">Website by</span> <a href="../">Carte Blanche</a></span></div></footer>
+<div class="callbar"><button type="button" class="btn" data-open-menu><span data-l="fr">La carte</span><span data-l="en">Menu</span></button><a class="btn alt" href="#reserver"><span data-l="fr">Réserver</span><span data-l="en">Book a table</span></a></div>
+<div class="ov" id="ov" role="dialog" aria-modal="true" aria-label="Menu">
+ <div class="ov-top"><span class="brand">Crêperie de l&#x27;Abbaye</span><div class="lang" role="group" aria-label="Langue"><button type="button" data-set="fr">FR</button><button type="button" data-set="en">EN</button></div><button type="button" class="btn alt" id="ov-close" style="padding:11px 18px"><span data-l="fr">Fermer</span><span data-l="en">Close</span> ✕</button></div>
+ <div class="tabs" role="tablist"><button type="button" role="tab" aria-selected="true"><span data-l="fr">Galettes de blé noir</span><span data-l="en">Buckwheat galettes</span></button><button type="button" role="tab" aria-selected="false"><span data-l="fr">Crêpes de froment</span><span data-l="en">Sweet crêpes</span></button><button type="button" role="tab" aria-selected="false"><span data-l="fr">À boire</span><span data-l="en">Drinks</span></button></div>
+ <div class="ov-body"><div class="panel"><h3><span data-l="fr">Galettes de blé noir</span><span data-l="en">Buckwheat galettes</span></h3><ul><li><span class="n"><span data-l="fr">La Complète</span><span data-l="en">Ham, cheese, egg</span></span><i></i><b>9,50 €</b></li><li><span class="n"><span data-l="fr">La Normande</span><span data-l="en">Camembert, apple, andouille</span></span><i></i><b>13,50 €</b></li><li><span class="n"><span data-l="fr">La Saint-Jacques</span><span data-l="en">Scallops, leek fondue</span></span><i></i><b>16 €</b></li><li><span class="n"><span data-l="fr">La Chèvre-miel</span><span data-l="en">Goat cheese and honey</span></span><i></i><b>11 €</b></li></ul></div><div class="panel" hidden><h3><span data-l="fr">Crêpes de froment</span><span data-l="en">Sweet crêpes</span></h3><ul><li><span class="n"><span data-l="fr">Beurre-sucre</span><span data-l="en">Butter and sugar</span></span><i></i><b>4,50 €</b></li><li><span class="n"><span data-l="fr">Caramel beurre salé</span><span data-l="en">Salted-butter caramel</span></span><i></i><b>6,50 €</b></li><li><span class="n"><span data-l="fr">Flambée au calvados</span><span data-l="en">Flambéed with calvados</span></span><i></i><b>8 €</b></li></ul></div><div class="panel" hidden><h3><span data-l="fr">À boire</span><span data-l="en">Drinks</span></h3><ul><li><span class="n"><span data-l="fr">Bolée de cidre brut</span><span data-l="en">Bowl of dry cider</span></span><i></i><b>4 €</b></li><li><span class="n"><span data-l="fr">Pommeau de Normandie</span><span data-l="en">Pommeau</span></span><i></i><b>5 €</b></li></ul></div></div>
+</div>
 <script>
-(function(){var r=document.documentElement;function s(l){r.lang=l;document.getElementById('fr').setAttribute('aria-pressed',l==='fr');document.getElementById('en').setAttribute('aria-pressed',l==='en');try{localStorage.setItem('cb-lang',l)}catch(e){}}
+(function(){var r=document.documentElement;r.classList.add('js');
+function s(l){r.lang=l;document.getElementById('fr').setAttribute('aria-pressed',l==='fr');document.getElementById('en').setAttribute('aria-pressed',l==='en');
+ document.querySelectorAll('[data-set]').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.set===l)});try{localStorage.setItem('cb-lang',l)}catch(e){}}
 var v=null;try{v=localStorage.getItem('cb-lang')}catch(e){}s(v==='en'?'en':'fr');
-document.getElementById('fr').onclick=function(){s('fr')};document.getElementById('en').onclick=function(){s('en')};})();
+document.getElementById('fr').onclick=function(){s('fr')};document.getElementById('en').onclick=function(){s('en')};
+document.querySelectorAll('[data-set]').forEach(function(b){b.onclick=function(){s(b.dataset.set)}});
+var top=document.getElementById('top');function sc(){top.classList.toggle('solid',scrollY>30)}addEventListener('scroll',sc,{passive:true});sc();
+if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px'});
+ document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});}else{document.querySelectorAll('.rv').forEach(function(el){el.classList.add('in')})}
+var ov=document.getElementById('ov'),last=null;
+function open(){last=document.activeElement;ov.classList.add('open');document.body.style.overflow='hidden';document.getElementById('ov-close').focus()}
+function close(){ov.classList.remove('open');document.body.style.overflow='';if(last)last.focus()}
+document.querySelectorAll('[data-open-menu]').forEach(function(b){b.addEventListener('click',open)});
+document.getElementById('ov-close').onclick=close;addEventListener('keydown',function(e){if(e.key==='Escape'&&ov.classList.contains('open'))close()});
+var tabs=[].slice.call(ov.querySelectorAll('[role=tab]')),panels=[].slice.call(ov.querySelectorAll('.panel'));
+tabs.forEach(function(t,i){t.onclick=function(){tabs.forEach(function(x,j){x.setAttribute('aria-selected',j===i)});panels.forEach(function(p,j){p.hidden=j!==i})}});
+var d=document.getElementById('r-date');var t=new Date();t.setDate(t.getDate()+1);d.value=t.toISOString().slice(0,10);
+document.getElementById('resa').addEventListener('submit',function(e){e.preventDefault();var n=document.getElementById('r-name'),ok=document.getElementById('r-ok'),fr=r.lang!=='en';
+ if(!n.value.trim()){n.focus();ok.textContent=fr?'Indiquez votre nom.':'Please add your name.';return}
+ ok.textContent=fr?'Démo : dans un vrai site, cette demande partirait directement au restaurant.':'Demo: on a real site, this request would go straight to the restaurant.'});
+})();
 </script>
 </body>
 </html>
