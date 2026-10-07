@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Babek · Caen</title>
+<meta name="description" content="Babek, le kebab réinventé au 19 rue Écuyère à Caen. Poulet français rôti à la broche, légumes de saison, sauces maison, pain au levain.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#f4ede2">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f4ede2;--bg-rgb:244,237,226;--bg-2:#ece3d4;--card:#fbf7f0;--line:rgba(40,30,20,.13);
+  --text:#1d1813;--muted:#6b6156;--soft:#3d352d;
+  --accent:#d6452c;--accent-2:#b93a22;--on-accent:#fff8f0;
+  --gold:#a8772a;--gold-soft:rgba(168,119,42,.35);--glow:rgba(214,69,44,.13);--ghost:rgba(29,24,19,.25);
+  --green:#6fbf73;--radius:22px;--max:1200px;
+  --serif:"Instrument Serif", Georgia, serif;--sans:"Inter", system-ui, sans-serif;
+  --pattern:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2222%22%20height%3D%2222%22%20viewBox%3D%220%200%2022%2022%22%3E%3Ccircle%20cx%3D%222%22%20cy%3D%222%22%20r%3D%221.3%22%20fill%3D%22rgba%2829%2C24%2C19%2C.13%29%22/%3E%3C/svg%3E");
+  color-scheme:light;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:100px}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+html[lang=fr] [data-l=en],html[lang=en] [data-l=fr]{display:none}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+.ico{width:100%;height:100%;display:block}
+.eyebrow{display:inline-flex;align-items:center;gap:12px;font-size:.75rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent-2);font-weight:600}
+.eyebrow::before{content:"";width:28px;height:1px;background:var(--gold)}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:400;letter-spacing:-.015em;line-height:1.05}
+h2{font-size:clamp(2.2rem,5vw,3.6rem)}
+h2 em,h1 em{font-style:italic;color:var(--accent-2)}
+section{padding:120px 0}
+:focus-visible{outline:2px solid var(--accent-2);outline-offset:5px}
+
+.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 26px;border-radius:999px;font-weight:600;font-size:.95rem;transition:transform .25s,background .25s,border-color .25s;cursor:pointer}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:var(--accent);color:var(--on-accent)}
+.btn-primary:hover{background:var(--accent-2)}
+.btn-ghost{border:1px solid var(--ghost);color:var(--text);backdrop-filter:blur(8px);background:rgba(var(--bg-rgb),.25)}
+.btn-ghost:hover{border-color:var(--text)}
+.btn svg{width:18px;height:18px}
+
+/* nav */
+.nav{position:fixed;inset:0 0 auto 0;z-index:50;transition:background .35s,border-color .35s,padding .35s;padding:22px 0;border-bottom:1px solid transparent}
+.nav.scrolled{background:rgba(var(--bg-rgb),.84);backdrop-filter:blur(14px);border-color:var(--line);padding:14px 0}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo{white-space:nowrap;font-family:var(--serif);font-size:1.5rem;letter-spacing:-.01em;display:flex;align-items:baseline;gap:8px}
+.logo span{font-family:var(--sans);font-size:.62rem;letter-spacing:.3em;color:var(--gold);font-weight:700}
+.nav-links{display:flex;gap:34px;font-size:.9rem;color:var(--muted)}
+.nav-links a:hover{color:var(--text)}
+.nav-right{display:flex;align-items:center;gap:14px}
+.lang{display:flex;border:1px solid var(--line);border-radius:999px;padding:3px;font-size:.72rem;font-weight:700}
+.lang button{background:none;border:0;color:var(--muted);padding:5px 10px;border-radius:999px;cursor:pointer;font:inherit;letter-spacing:.08em}
+.lang button.on{background:var(--text);color:var(--bg)}
+.nav .btn{padding:10px 18px;font-size:.85rem}
+
+/* hero */
+.hero{position:relative;min-height:100svh;display:flex;align-items:center;padding:150px 0 90px;overflow:hidden;isolation:isolate}
+.hero::before{content:"";position:absolute;inset:0;z-index:-2;background:var(--pattern);opacity:.55;
+  -webkit-mask-image:radial-gradient(ellipse 70% 80% at 72% 45%,#000 0%,transparent 75%);mask-image:radial-gradient(ellipse 70% 80% at 72% 45%,#000 0%,transparent 75%)}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(circle at 74% 46%,var(--glow) 0%,transparent 42%),linear-gradient(0deg,var(--bg) 0%,transparent 30%)}
+.hero .wrap{width:100%;display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center;animation:arrive 1.4s cubic-bezier(.2,.65,.3,1) both}
+@keyframes arrive{from{opacity:0;transform:translateY(18px)}}
+.status{display:inline-flex;align-items:center;gap:10px;padding:8px 16px;border-radius:999px;background:rgba(var(--bg-rgb),.5);border:1px solid var(--line);font-size:.82rem;margin-bottom:26px;backdrop-filter:blur(6px)}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--muted);position:relative;flex-shrink:0}
+.dot.open{background:var(--green)}
+.dot.open::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:2px solid var(--green);animation:ping 1.8s infinite}
+@keyframes ping{0%{opacity:.8;transform:scale(.6)}100%{opacity:0;transform:scale(1.6)}}
+.kicker{font-size:.78rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:18px}
+.hero h1{font-size:clamp(3rem,7.6vw,6.6rem);max-width:12ch;margin-bottom:26px}
+.hero h1 em{background:linear-gradient(100deg,var(--accent-2) 30%,var(--gold) 70%,var(--accent-2));-webkit-background-clip:text;background-clip:text;color:transparent;background-size:200% 100%;animation:shine 7s ease-in-out infinite alternate}
+@keyframes shine{to{background-position:100% 0}}
+.hero p.lead{font-size:clamp(1.05rem,1.6vw,1.2rem);color:var(--soft);max-width:46ch;margin-bottom:36px}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:14px}
+.hero-meta{display:flex;flex-wrap:wrap;gap:40px;margin-top:60px;padding-top:26px;border-top:1px solid var(--gold-soft);max-width:640px}
+.hero-meta div{font-size:.8rem;color:var(--muted)}
+.hero-meta strong{display:block;font-family:var(--serif);font-weight:400;font-size:1.45rem;color:var(--text)}
+
+/* hero art: an arch window with the house dish drawn in gold */
+.art{position:relative;justify-self:center;width:min(100%,440px);aspect-ratio:4/5}
+.arch{position:absolute;inset:0;border-radius:999px 999px 26px 26px;border:1px solid var(--gold-soft);overflow:hidden;
+  background:radial-gradient(circle at 50% 42%,var(--glow),transparent 62%),var(--card);box-shadow:0 40px 90px rgba(0,0,0,.35)}
+.arch::before{content:"";position:absolute;inset:0;background:var(--pattern);opacity:.5}
+.arch::after{content:"";position:absolute;inset:14px;border-radius:999px 999px 18px 18px;border:1px solid var(--gold-soft)}
+.hero-ico{position:absolute;left:50%;top:50%;width:62%;height:auto;transform:translate(-50%,-46%);color:var(--gold);filter:drop-shadow(0 0 22px var(--glow));animation:float 9s ease-in-out infinite alternate}
+@keyframes float{to{transform:translate(-50%,-50%) rotate(-2deg)}}
+.orb{position:absolute;width:72px;height:72px;padding:16px;border-radius:50%;background:rgba(var(--bg-rgb),.75);border:1px solid var(--gold-soft);color:var(--accent-2);backdrop-filter:blur(8px);animation:bob 6s ease-in-out infinite alternate}
+.orb.o1{left:-28px;top:22%}
+.orb.o2{right:-24px;top:48%;animation-delay:-2s}
+.orb.o3{left:12%;bottom:-24px;animation-delay:-4s}
+@keyframes bob{to{transform:translateY(-10px)}}
+
+/* marquee */
+.marquee{border-block:1px solid var(--line);padding:22px 0;overflow:hidden;background:var(--bg-2)}
+.marquee-track{display:flex;gap:48px;width:max-content;animation:scroll 65s linear infinite}
+.marquee span{font-family:var(--serif);font-size:1.6rem;font-style:italic;color:var(--muted);white-space:nowrap;display:flex;align-items:center;gap:48px}
+.marquee span::after{content:"✦";font-style:normal;color:var(--accent);font-size:1rem}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+/* about */
+.about .wrap{display:grid;grid-template-columns:1fr 1.05fr;gap:80px;align-items:center}
+.about-art{position:relative;border-radius:var(--radius);overflow:hidden;aspect-ratio:1/1.1;border:1px solid var(--gold-soft);background:radial-gradient(circle at 50% 45%,var(--glow),transparent 65%),var(--card);box-shadow:0 28px 70px rgba(0,0,0,.25)}
+.about-art::before{content:"";position:absolute;inset:0;background:var(--pattern);opacity:.35}
+.about-ico{position:absolute;left:50%;top:44%;width:56%;transform:translate(-50%,-50%);color:var(--gold)}
+.about-badge{position:absolute;left:24px;bottom:24px;right:24px;background:rgba(var(--bg-rgb),.82);backdrop-filter:blur(10px);border:1px solid var(--line);padding:18px 22px;border-radius:16px}
+.about-badge strong{font-family:var(--serif);font-size:1.9rem;font-weight:400;color:var(--gold);display:block;line-height:1.1}
+.about-badge span{font-size:.82rem;color:var(--muted)}
+.about h2{margin:18px 0 26px}
+.about p{color:var(--muted);margin-bottom:18px;max-width:54ch}
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:38px}
+.pillar{border-top:1px solid var(--gold-soft);padding-top:18px}
+.pillar b{display:block;font-size:.95rem;margin-bottom:4px}
+.pillar span{font-size:.85rem;color:var(--muted)}
+
+/* signatures */
+.sig-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:56px;flex-wrap:wrap}
+.sig-head p{color:var(--muted);max-width:40ch}
+.sig-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.dish{position:relative;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;transition:transform .65s cubic-bezier(.2,.65,.3,1),border-color .4s;cursor:pointer;box-shadow:0 12px 32px rgba(0,0,0,.12)}
+.dish:hover{transform:translateY(-6px);border-color:var(--gold-soft)}
+.dish-art{position:relative;aspect-ratio:1/1;display:grid;place-items:center;background:radial-gradient(circle at 50% 50%,var(--glow),transparent 62%);border-bottom:1px solid var(--line);overflow:hidden}
+.dish-art::before{content:"";position:absolute;inset:0;background:var(--pattern);opacity:.28;transition:opacity .6s}
+.dish:hover .dish-art::before{opacity:.5}
+.dish-art .ico{position:relative;width:50%;height:auto;color:var(--gold);transition:transform 1.4s cubic-bezier(.2,.65,.3,1)}
+.dish:hover .dish-art .ico{transform:scale(1.08) rotate(-3deg)}
+.dish-body{padding:22px}
+.dish-body h3{font-size:1.4rem;margin-bottom:6px}
+.dish-body p{font-size:.88rem;color:var(--muted)}
+.dish-price{display:block;margin-top:12px;font-family:var(--serif);font-weight:400;font-size:1.2rem;color:var(--accent-2)}
+.tag{display:inline-block;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--gold);margin-bottom:10px}
+
+/* menu */
+.menu{background:var(--bg-2);position:relative}
+.menu-head{text-align:center;margin-bottom:50px}
+.menu-head .eyebrow::after{content:"";width:28px;height:1px;background:var(--gold)}
+.menu-head h2{margin-top:14px}
+.tabs{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:50px}
+.tabs button{background:none;border:1px solid var(--line);color:var(--muted);padding:11px 22px;border-radius:999px;font:600 .88rem var(--sans);cursor:pointer;transition:.25s}
+.tabs button:hover{color:var(--text);border-color:var(--ghost)}
+.tabs button.on{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.menu-list{display:none;grid-template-columns:1fr 1fr;gap:6px 70px;max-width:980px;margin:0 auto}
+.menu-list.on{display:grid;animation:fade .45s ease}
+@keyframes fade{from{opacity:0;transform:translateY(10px)}}
+.item{padding:22px 0;border-bottom:1px dashed var(--line)}
+.item-top{display:flex;align-items:baseline;gap:12px}
+.item-top h4{font-size:1.28rem;white-space:nowrap}
+.item-top i{flex:1;border-bottom:1px dotted var(--line);transform:translateY(-5px);min-width:12px}
+.item-top b{font-family:var(--serif);font-weight:400;font-size:1.22rem;color:var(--accent-2);white-space:nowrap}
+.item p{font-size:.86rem;color:var(--muted);margin-top:4px}
+.menu-note{text-align:center;color:var(--muted);font-size:.85rem;margin:44px auto 0;max-width:62ch}
+.menu-open-cta{display:flex;justify-content:center;margin-top:34px}
+
+/* visit */
+.visit .wrap{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:44px}
+.panel h2{font-size:clamp(2rem,4vw,2.8rem);margin:14px 0 30px}
+.hours li{list-style:none;display:flex;justify-content:space-between;gap:16px;padding:13px 0;border-bottom:1px solid var(--line);font-size:.95rem}
+.hours li span:last-child{color:var(--muted);text-align:right}
+.hours li.today,.hours li.today span:last-child{color:var(--accent-2);font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:30px}
+.chip{font-size:.78rem;padding:7px 14px;border-radius:999px;background:rgba(var(--bg-rgb),.35);border:1px solid var(--line);color:var(--soft)}
+.sub{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-top:34px;font-weight:600}
+.map{border-radius:16px;overflow:hidden;aspect-ratio:16/10;margin:18px 0 28px;border:1px solid var(--line);background:var(--bg-2)}
+.map iframe{width:100%;height:100%;border:0}
+.dark-map .map iframe{filter:grayscale(.4) invert(.9) hue-rotate(180deg) contrast(.9)}
+.contact-rows a,.contact-rows div{display:flex;gap:16px;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--line)}
+.contact-rows svg{width:20px;height:20px;color:var(--accent-2);flex-shrink:0;margin-top:3px}
+.contact-rows small{display:block;color:var(--muted);font-size:.78rem}
+.contact-rows a:hover strong{color:var(--accent-2)}
+.contact-rows strong{font-weight:600;transition:color .2s}
+.panel .btn{margin-top:28px}
+
+/* cta */
+.cta{padding:0 0 120px}
+.cta-box{position:relative;border-radius:30px;overflow:hidden;padding:90px 60px;text-align:center;background:radial-gradient(circle at 50% 120%,var(--glow),transparent 60%),var(--card);border:1px solid var(--gold-soft)}
+.cta-box::before{content:"";position:absolute;inset:0;background:var(--pattern);opacity:.3}
+.cta-box > *{position:relative}
+.cta-box h2{max-width:17ch;margin:16px auto 20px}
+.cta-box p{color:var(--soft);margin-bottom:34px}
+.cta-box .hero-ctas{justify-content:center}
+
+footer{border-top:1px solid var(--line);padding:40px 0;font-size:.85rem;color:var(--muted)}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
+footer nav{display:flex;gap:24px}
+footer a:hover{color:var(--text)}
+.proposal{border-top:1px dashed var(--line);margin-top:26px;padding-top:20px;font-size:.78rem;line-height:1.55;width:100%}
+.proposal a{color:var(--accent-2);border-bottom:1px solid currentColor}
+
+/* "maquette" pill */
+.mq{position:fixed;right:18px;bottom:18px;z-index:40;display:flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;font-size:.72rem;font-weight:600;letter-spacing:.04em;background:rgba(var(--bg-rgb),.85);border:1px solid var(--gold-soft);color:var(--soft);backdrop-filter:blur(10px)}
+.mq b{color:var(--gold);letter-spacing:.16em;text-transform:uppercase;font-size:.62rem}
+
+.callbar{display:none}
+
+/* reveal */
+.has-reveals .reveal:not(.in){opacity:0;transform:translateY(24px)}
+.reveal{transition:opacity 1.15s ease,transform 1.15s cubic-bezier(.2,.65,.3,1)}
+.sig-grid .dish:nth-child(2){transition-delay:90ms}.sig-grid .dish:nth-child(3){transition-delay:180ms}.sig-grid .dish:nth-child(4){transition-delay:270ms}
+
+/* full-screen menu */
+body.carte-lock{overflow:hidden}
+.carte[hidden]{display:none}
+.carte{position:fixed;inset:0;z-index:100;display:flex;flex-direction:column;color:var(--text);background:var(--bg);padding-top:env(safe-area-inset-top,0px);animation:carte-in .5s cubic-bezier(.2,.7,.2,1)}
+.carte::before{content:"";position:absolute;inset:0;background:var(--pattern);opacity:.18;pointer-events:none}
+@keyframes carte-in{from{opacity:0;transform:translateY(28px)}}
+.carte-top{position:relative;border-bottom:1px solid var(--line);background:rgba(var(--bg-rgb),.7);backdrop-filter:blur(14px)}
+.carte-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0 14px}
+.carte-title{display:flex;align-items:baseline;gap:14px;min-width:0;flex-wrap:wrap}
+.carte-title h2{font-size:clamp(2rem,4.5vw,3rem)}
+.carte-title > span{font-size:.62rem;letter-spacing:.3em;color:var(--gold);font-weight:700}
+.carte-x{flex-shrink:0;width:48px;height:48px;border-radius:50%;border:1px solid var(--gold-soft);background:transparent;color:var(--text);cursor:pointer;display:grid;place-items:center;transition:transform .25s}
+.carte-x:hover{transform:rotate(90deg)}
+.carte-x svg{width:20px;height:20px}
+.carte-tabs{display:flex;gap:8px;overflow-x:auto;padding-bottom:16px;scrollbar-width:none}
+.carte-tabs::-webkit-scrollbar{display:none}
+.carte-tabs button{flex-shrink:0;background:none;border:1px solid var(--line);color:var(--muted);padding:10px 20px;border-radius:999px;font:600 .86rem var(--sans);cursor:pointer;transition:.25s}
+.carte-tabs button.on{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.carte-body{position:relative;flex:1;overflow-y:auto;scroll-behavior:smooth;padding:34px 0 120px}
+.carte-sheet{max-width:1000px;margin:0 auto}
+.carte-cat{margin-bottom:56px;scroll-margin-top:20px}
+.carte-banner{position:relative;height:clamp(120px,20vw,180px);border-radius:var(--radius);overflow:hidden;margin-bottom:12px;display:flex;align-items:flex-end;padding:24px 28px;border:1px solid var(--gold-soft);background:radial-gradient(circle at 85% 50%,var(--glow),transparent 55%),var(--card)}
+.carte-banner::before{content:"";position:absolute;inset:0;background:var(--pattern);opacity:.35}
+.ban-ico{position:absolute;right:28px;top:50%;width:clamp(90px,16vw,140px);transform:translateY(-50%);color:var(--gold);opacity:.9}
+.carte-banner h3{position:relative;font-size:clamp(1.8rem,4vw,2.6rem)}
+.carte-banner h3 small{display:block;font-family:var(--sans);font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:6px}
+.carte-items{display:grid;grid-template-columns:1fr 1fr;gap:0 56px}
+.c-item{display:grid;grid-template-columns:60px 1fr;gap:16px;align-items:center;padding:18px 0;border-bottom:1px dashed var(--line)}
+.c-thumb{width:60px;height:60px;border-radius:50%;border:1px solid var(--gold-soft);background:var(--card);padding:13px;color:var(--gold)}
+.c-item .item-top h4{font-size:1.18rem;white-space:normal}
+.c-item p{font-size:.84rem;color:var(--muted);margin-top:2px}
+.carte-note{text-align:center;color:var(--muted);font-size:.86rem;padding-top:14px;border-top:1px solid var(--gold-soft);max-width:62ch;margin:0 auto}
+
+@media (max-width:980px){
+  section{padding:88px 0}
+  .nav-links{display:none}
+  .hero .wrap{grid-template-columns:1fr;gap:56px}
+  .art{width:min(78%,360px)}
+  .about .wrap,.visit .wrap{grid-template-columns:1fr;gap:48px}
+  .about-art{max-width:520px}
+  .sig-grid{grid-template-columns:1fr 1fr}
+  .menu-list{grid-template-columns:1fr}
+}
+@media (max-width:760px){.carte-items{grid-template-columns:1fr}.carte-banner{padding:18px 20px}.c-item{grid-template-columns:52px 1fr}.c-thumb{width:52px;height:52px;padding:11px}}
+@media (max-width:600px){
+  .wrap{padding:0 16px}
+  .nav{background:linear-gradient(rgba(var(--bg-rgb),.92),rgba(var(--bg-rgb),0))}
+  .nav .btn{display:none}
+  .logo{font-size:1.2rem}
+  .hero{padding:118px 0 90px}
+  .hero-meta{gap:26px;margin-top:44px}
+  .art{width:76%}
+  .orb{width:58px;height:58px;padding:13px}
+  .orb.o1{left:-18px}.orb.o2{right:-16px}
+  .pillars{grid-template-columns:1fr;gap:14px}
+  .sig-grid{grid-template-columns:1fr}
+  .panel{padding:28px 22px}
+  .cta-box{padding:64px 22px}
+  .item-top h4{white-space:normal;font-size:1.15rem}
+  .mq{display:none}
+  .callbar{display:flex;position:fixed;left:12px;right:12px;bottom:12px;z-index:60;gap:8px}
+  .callbar a{flex:1;justify-content:center;padding:14px 8px;font-size:.88rem}
+  footer{padding-bottom:110px}
+}
+html.motion-paused *,html.page-hidden *{animation-play-state:paused!important}
+@media (prefers-reduced-motion:reduce){
+  html,.carte-body{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .has-reveals .reveal:not(.in){opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a href="#top" class="logo">Babek <span>CAEN</span></a>
+    <nav class="nav-links"><a href="#histoire"><span data-l="fr">Notre maison</span><span data-l="en">Our story</span></a><a href="#carte"><span data-l="fr">La carte</span><span data-l="en">Menu</span></a><a href="#visite"><span data-l="fr">Nous trouver</span><span data-l="en">Visit us</span></a></nav>
+    <div class="nav-right">
+      <div class="lang"><button data-lang="fr" class="on">FR</button><button data-lang="en">EN</button></div>
+      <a href="tel:+33231508726" class="btn btn-primary"><span data-l="fr">Appeler</span><span data-l="en">Call</span></a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <div class="status"><span class="dot" id="dot"></span><span id="statusText">…</span></div>
+        <p class="kicker"><span data-l="fr">Le kebab à l'envers · Rue Écuyère</span><span data-l="en">Kebab, flipped · Rue Écuyère</span></p>
+        <h1><span data-l="fr">Le kebab, <em>réinventé.</em></span><span data-l="en">Kebab, <em>reinvented.</em></span></h1>
+        <p class="lead"><span data-l="fr">Poulet français mariné aux épices et rôti à la broche, légumes de saison, sauces maison et pain au levain de la boulangerie voisine.</span><span data-l="en">French chicken marinated in spices and spit-roasted, seasonal vegetables, house sauces and sourdough from the bakery next door.</span></p>
+        <div class="hero-ctas">
+          <a href="#carte" class="btn btn-primary js-carte"><span data-l="fr">Voir la carte</span><span data-l="en">See the menu</span></a>
+          <a href="https://www.google.com/maps/dir/?api=1&destination=19+rue+%C3%89cuy%C3%A8re%2C+14000+Caen" target="_blank" rel="noopener" class="btn btn-ghost">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+            <span data-l="fr">Itinéraire</span><span data-l="en">Directions</span></a>
+        </div>
+        <div class="hero-meta"><div><strong><span data-l="fr">Poulet français</span><span data-l="en">French chicken</span></strong><span><span data-l="fr">Rôti à la broche</span><span data-l="en">Spit-roasted</span></span></div><div><strong><span data-l="fr">De saison</span><span data-l="en">Seasonal</span></strong><span><span data-l="fr">Légumes du moment</span><span data-l="en">Vegetables of the moment</span></span></div><div><strong><span data-l="fr">Depuis 2021</span><span data-l="en">Since 2021</span></strong><span>19 rue Écuyère</span></div></div>
+      </div>
+      <div class="art" aria-hidden="true">
+        <div class="arch"><svg class="hero-ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M32 4v56"/><path d="M21 13h22l-3.5 37h-15z"/><path d="M22 21h20M23 30h18M24 39h16"/><path d="M14 56h36"/><path d="M48 18c4 3 4 9 0 12M52 15c6 5 6 13 0 18"/></svg></div>
+        <span class="orb o1"><svg class="ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M32 6c11 8 16 17 16 26a16 16 0 0 1-32 0c0-9 5-18 16-26z"/><path d="M32 16v42"/><path d="M32 30l-7-6M32 38l8-7M32 46l-8-6"/></svg></span><span class="orb o2"><svg class="ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 30h50c0 14-11 23-25 23S7 44 7 30z"/><path d="M20 30c-1-6 5-11 12-11 8 0 13 6 9 11"/><path d="M27 30c0-4 4-6 7-4"/><circle cx="32" cy="23" r="1.2"/><path d="M24 58h16"/></svg></span><span class="orb o3"><svg class="ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 40 40 16l16 10v18H8z"/><path d="M8 40h48"/><circle cx="22" cy="48" r="2.4"/><circle cx="38" cy="50" r="2"/><circle cx="46" cy="32" r="2.6"/><circle cx="32" cy="30" r="1.6"/></svg></span>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true"><div class="marquee-track"><span>Babek</span><span>Halloumi</span><span>Bolbek bowl</span><span>Falafel</span><span>Houmous</span><span>Frites au zaatar</span><span>Pain au levain</span><span>Légumes de saison</span><span>Babek</span><span>Halloumi</span><span>Bolbek bowl</span><span>Falafel</span><span>Houmous</span><span>Frites au zaatar</span><span>Pain au levain</span><span>Légumes de saison</span></div></div>
+
+  <section class="about" id="histoire">
+    <div class="wrap">
+      <div class="about-art reveal" aria-hidden="true"><svg class="about-ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 58 12 21c8-7 32-7 40 0l-9 37z"/><path d="M12 21c3 4 7-1 10 2s7-3 10 0 7-3 10 0 6-2 10-2"/><path d="M15 33h33M17.5 43h29"/><path d="M22 14c2-3 6-4 10-4s8 1 10 4"/></svg><div class="about-badge"><strong>Babek = kebab</strong><span><span data-l="fr">…écrit à l'envers</span><span data-l="en">…spelled backwards</span></span></div></div>
+      <div class="reveal">
+        <p class="eyebrow"><span data-l="fr">Notre maison</span><span data-l="en">Our story</span></p>
+        <h2><span data-l="fr">Berlin dans le pain, <em>Caen dans l'assiette.</em></span><span data-l="en">Berlin in the bread, <em>Caen on the plate.</em></span></h2>
+        <p><span data-l="fr">Babek, c'est le mot kebab à l'envers. Étienne Godet a ouvert la maison en février 2021, inspiré par la culture kebab de Berlin, après être passé par les cuisines de Stéphane Carbone et d'Anthony Caillot.</span><span data-l="en">Babek is kebab spelled backwards. Étienne Godet opened it in February 2021, inspired by Berlin's kebab culture, after cooking in the kitchens of Stéphane Carbone and Anthony Caillot.</span></p><p><span data-l="fr">L'idée : tout faire maison, des marinades aux sauces, avec des légumes qui changent au fil des saisons et le pain de la boulangerie d'à côté. Un kebab de qualité, frais et léger.</span><span data-l="en">The idea: make everything in-house, from marinades to sauces, with vegetables that change with the seasons and bread from the bakery next door. A quality kebab, fresh and light.</span></p>
+        <div class="pillars"><div class="pillar"><b><span data-l="fr">Fait maison</span><span data-l="en">Homemade</span></b><span><span data-l="fr">Marinades et sauces</span><span data-l="en">Marinades and sauces</span></span></div><div class="pillar"><b><span data-l="fr">De saison</span><span data-l="en">Seasonal</span></b><span><span data-l="fr">Légumes du moment</span><span data-l="en">Vegetables of the moment</span></span></div><div class="pillar"><b><span data-l="fr">Végétarien</span><span data-l="en">Vegetarian</span></b><span>Halloumi & falafel</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="signatures">
+    <div class="wrap">
+      <div class="sig-head reveal">
+        <div>
+          <p class="eyebrow"><span data-l="fr">Nos incontournables</span><span data-l="en">Must-tries</span></p>
+          <h2><span data-l="fr">Les <em>signatures</em> de la maison</span><span data-l="en">House <em>signatures</em></span></h2>
+        </div>
+        <p><span data-l="fr">Le kebab comme on ne l'a jamais goûté à Caen.</span><span data-l="en">Kebab like Caen has never tasted it.</span></p>
+      </div>
+      <div class="sig-grid"><article class="dish reveal" tabindex="0"><div class="dish-art"><svg class="ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 58 12 21c8-7 32-7 40 0l-9 37z"/><path d="M12 21c3 4 7-1 10 2s7-3 10 0 7-3 10 0 6-2 10-2"/><path d="M15 33h33M17.5 43h29"/><path d="M22 14c2-3 6-4 10-4s8 1 10 4"/></svg></div>
+          <div class="dish-body"><span class="tag"><span data-l="fr">L'original</span><span data-l="en">The original</span></span><h3><span data-l="fr">Le Babek</span><span data-l="en">The Babek</span></h3><p><span data-l="fr">Pain au levain, volaille marinée aux épices, légumes de saison, feta, herbes fraîches.</span><span data-l="en">Sourdough, spiced chicken, seasonal vegetables, feta, fresh herbs.</span></p><b class="dish-price">13,50 €</b></div></article><article class="dish reveal" tabindex="0"><div class="dish-art"><svg class="ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 40 40 16l16 10v18H8z"/><path d="M8 40h48"/><circle cx="22" cy="48" r="2.4"/><circle cx="38" cy="50" r="2"/><circle cx="46" cy="32" r="2.6"/><circle cx="32" cy="30" r="1.6"/></svg></div>
+          <div class="dish-body"><span class="tag"><span data-l="fr">Végétarien</span><span data-l="en">Vegetarian</span></span><h3>Halloumi Lover</h3><p><span data-l="fr">Le sandwich au halloumi grillé.</span><span data-l="en">The grilled halloumi sandwich.</span></p><b class="dish-price">14,50 €</b></div></article><article class="dish reveal" tabindex="0"><div class="dish-art"><svg class="ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 30h50c0 14-11 23-25 23S7 44 7 30z"/><path d="M20 30c-1-6 5-11 12-11 8 0 13 6 9 11"/><path d="M27 30c0-4 4-6 7-4"/><circle cx="32" cy="23" r="1.2"/><path d="M24 58h16"/></svg></div>
+          <div class="dish-body"><span class="tag"><span data-l="fr">Sans pain</span><span data-l="en">No bread</span></span><h3>Bolbek</h3><p><span data-l="fr">Boulgour, houmous, volaille marinée, légumes de saison.</span><span data-l="en">Bulgur, hummus, marinated chicken, seasonal vegetables.</span></p><b class="dish-price">15,50 €</b></div></article><article class="dish reveal" tabindex="0"><div class="dish-art"><svg class="ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 30h28l-4 26H22z"/><path d="M22 30 20 10M27 30l-1-22M32 30V7M37 30l1-21M42 30l2-18"/><path d="M27 42c2 3 8 3 10 0"/></svg></div>
+          <div class="dish-body"><span class="tag"><span data-l="fr">À côté</span><span data-l="en">On the side</span></span><h3><span data-l="fr">Frites au zaatar</span><span data-l="en">Zaatar fries</span></h3><p><span data-l="fr">Croustillantes, relevées au zaatar.</span><span data-l="en">Crispy, with a zaatar kick.</span></p><b class="dish-price">4,00 €</b></div></article></div>
+    </div>
+  </section>
+
+  <section class="menu" id="carte">
+    <div class="wrap">
+      <div class="menu-head reveal">
+        <p class="eyebrow"><span data-l="fr">La carte</span><span data-l="en">Menu</span></p>
+        <h2><span data-l="fr">Simple, frais, <em>fait ici.</em></span><span data-l="en">Simple, fresh, <em>made here.</em></span></h2>
+      </div>
+      <div class="tabs" role="tablist"><button class="on" data-tab="t1" role="tab"><span data-l="fr">Sandwichs</span><span data-l="en">Sandwiches</span></button><button class="" data-tab="t2" role="tab">Bowls</button><button class="" data-tab="t3" role="tab"><span data-l="fr">À côté & desserts</span><span data-l="en">Sides & desserts</span></button></div>
+      <div class="menu-list on" id="t1"><div class="item"><div class="item-top"><h4><span data-l="fr">Le Babek</span><span data-l="en">The Babek</span></h4><i></i><b>13,50 €</b></div><p><span data-l="fr">Volaille marinée, légumes de saison, feta, herbes, sauce maison</span><span data-l="en">Marinated chicken, seasonal vegetables, feta, herbs, house sauce</span></p></div><div class="item"><div class="item-top"><h4>Halloumi Lover</h4><i></i><b>14,50 €</b></div><p><span data-l="fr">Halloumi grillé · végétarien</span><span data-l="en">Grilled halloumi · vegetarian</span></p></div><div class="item"><div class="item-top"><h4>Grilled cheese</h4><i></i><b>7,50 €</b></div><p><span data-l="fr">Le croque fondant de la maison</span><span data-l="en">The house's melty toastie</span></p></div></div><div class="menu-list" id="t2"><div class="item"><div class="item-top"><h4>Bolbek</h4><i></i><b>15,50 €</b></div><p><span data-l="fr">Boulgour, houmous, volaille marinée, légumes de saison</span><span data-l="en">Bulgur, hummus, marinated chicken, seasonal vegetables</span></p></div><div class="item"><div class="item-top"><h4>Falafel bowl</h4><i></i><b>15,50 €</b></div><p><span data-l="fr">Falafels et légumes de saison · végétarien</span><span data-l="en">Falafel and seasonal vegetables · vegetarian</span></p></div></div><div class="menu-list" id="t3"><div class="item"><div class="item-top"><h4><span data-l="fr">Frites au zaatar</span><span data-l="en">Zaatar fries</span></h4><i></i><b>4,00 €</b></div><p><span data-l="fr">Croustillantes, relevées au zaatar</span><span data-l="en">Crispy, with zaatar</span></p></div><div class="item"><div class="item-top"><h4><span data-l="fr">Houmous & pita</span><span data-l="en">Hummus & pita</span></h4><i></i><b>6,00 €</b></div><p><span data-l="fr">Houmous maison</span><span data-l="en">Homemade hummus</span></p></div><div class="item"><div class="item-top"><h4>Fried chicken</h4><i></i><b>9,00 €</b></div><p><span data-l="fr">Poulet croustillant</span><span data-l="en">Crispy chicken</span></p></div><div class="item"><div class="item-top"><h4>Babettes</h4></div><p><span data-l="fr">Pommes dauphines façon churros</span><span data-l="en">Churro-style potato puffs</span></p></div><div class="item"><div class="item-top"><h4><span data-l="fr">Mousse au chocolat</span><span data-l="en">Chocolate mousse</span></h4></div><p><span data-l="fr">Praliné noisette et sarrasin</span><span data-l="en">Hazelnut and buckwheat praline</span></p></div></div>
+      <p class="menu-note"><span data-l="fr">Prix relevés sur la carte en ligne, à confirmer sur place. Les légumes changent avec les saisons.</span><span data-l="en">Prices taken from the online menu, to be confirmed on site. Vegetables change with the seasons.</span></p>
+      <div class="menu-open-cta"><a href="#carte" class="btn btn-primary js-carte"><span data-l="fr">Ouvrir la carte complète</span><span data-l="en">Open the full menu</span></a></div>
+    </div>
+  </section>
+
+  <section class="visit" id="visite">
+    <div class="wrap">
+      <div class="panel reveal">
+        <p class="eyebrow"><span data-l="fr">Horaires</span><span data-l="en">Opening hours</span></p>
+        <h2><span data-l="fr">Midi et soir, <em>six jours sur sept.</em></span><span data-l="en">Lunch and dinner, <em>six days a week.</em></span></h2>
+        <ul class="hours" id="hours"></ul>
+        <p class="sub"><span data-l="fr">Paiements</span><span data-l="en">Payment</span></p>
+        <div class="chips"><span class="chip"><span data-l="fr">Carte bancaire</span><span data-l="en">Card</span></span><span class="chip"><span data-l="fr">Espèces</span><span data-l="en">Cash</span></span></div>
+        <p class="sub"><span data-l="fr">Services</span><span data-l="en">Services</span></p>
+        <div class="chips"><span class="chip"><span data-l="fr">Sur place</span><span data-l="en">Dine in</span></span><span class="chip"><span data-l="fr">À emporter</span><span data-l="en">Takeaway</span></span><span class="chip"><span data-l="fr">Terrasse</span><span data-l="en">Terrace</span></span><span class="chip"><span data-l="fr">Végétarien</span><span data-l="en">Vegetarian</span></span></div>
+      </div>
+      <div class="panel reveal">
+        <p class="eyebrow"><span data-l="fr">Nous trouver</span><span data-l="en">Find us</span></p>
+        <div class="map"><iframe title="Carte Babek" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=19+rue+%C3%89cuy%C3%A8re%2C+14000+Caen&output=embed"></iframe></div>
+        <div class="contact-rows">
+          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+            <span><small><span data-l="fr">Adresse</span><span data-l="en">Address</span></small><strong>19 rue Écuyère, 14000 Caen</strong></span></div>
+          <a href="tel:+33231508726"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+            <span><small><span data-l="fr">Téléphone</span><span data-l="en">Phone</span></small><strong>02 31 50 87 26</strong></span></a>
+          
+        </div>
+        <a href="https://www.google.com/maps/dir/?api=1&destination=19+rue+%C3%89cuy%C3%A8re%2C+14000+Caen" target="_blank" rel="noopener" class="btn btn-primary"><span data-l="fr">Lancer l'itinéraire</span><span data-l="en">Get directions</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="wrap">
+      <div class="cta-box reveal">
+        <p class="eyebrow"><span data-l="fr">À très vite</span><span data-l="en">See you soon</span></p>
+        <h2><span data-l="fr">Un Babek ce midi ? <em>Appelez, c'est prêt.</em></span><span data-l="en">A Babek for lunch? <em>Call ahead, it's ready.</em></span></h2>
+        <p><span data-l="fr">Commandez par téléphone et passez le récupérer.</span><span data-l="en">Order by phone and pick it up.</span></p>
+        <div class="hero-ctas">
+          <a href="tel:+33231508726" class="btn btn-primary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>02 31 50 87 26</a>
+          <a href="#carte" class="btn btn-ghost js-carte"><span data-l="fr">Voir la carte</span><span data-l="en">See the menu</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="yr"></span> Babek · Caen</span>
+    <nav><a href="#carte" class="js-carte"><span data-l="fr">La carte</span><span data-l="en">Menu</span></a><a href="#visite"><span data-l="fr">Nous trouver</span><span data-l="en">Visit us</span></a></nav>
+    <p class="proposal"><span data-l="fr">Maquette proposée par <a href="../">Carte Blanche</a>, studio web à Caen. Ce site n'est pas encore validé par Babek : les informations viennent de sources publiques (Tendance Ouest, Uber Eats, Mister J) et sont à confirmer. Les illustrations seront remplacées par vos propres photos.</span><span data-l="en">Mock-up proposed by <a href="../">Carte Blanche</a>, a web studio in Caen. This site has not yet been approved by Babek: details come from public sources (Tendance Ouest, Uber Eats, Mister J) and are to be confirmed. Illustrations will be replaced by your own photos.</span></p>
+  </div>
+</footer>
+
+<a class="mq" href="../"><b><span data-l="fr">Maquette</span><span data-l="en">Mock-up</span></b><span data-l="fr">Proposition Carte Blanche</span><span data-l="en">A Carte Blanche proposal</span></a>
+
+<div class="callbar">
+  <a href="#carte" class="btn btn-ghost js-carte"><span data-l="fr">La carte</span><span data-l="en">Menu</span></a>
+  <a href="tel:+33231508726" class="btn btn-primary"><span data-l="fr">Appeler</span><span data-l="en">Call</span></a>
+  <a href="https://www.google.com/maps/dir/?api=1&destination=19+rue+%C3%89cuy%C3%A8re%2C+14000+Caen" target="_blank" rel="noopener" class="btn btn-ghost"><span data-l="fr">Itinéraire</span><span data-l="en">Directions</span></a>
+</div>
+
+<div class="carte" id="carteSheet" role="dialog" aria-modal="true" aria-labelledby="carteTitle" hidden>
+  <div class="carte-top"><div class="wrap">
+    <div class="carte-bar">
+      <div class="carte-title"><h2 id="carteTitle"><span data-l="fr">La <em>carte</em></span><span data-l="en">The <em>menu</em></span></h2><span>BABEK · CAEN</span></div>
+      <button class="carte-x" id="carteClose" type="button" aria-label="Fermer la carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+    <div class="carte-tabs" id="carteTabs"><button type="button" data-go="c-t1" class="on"><span data-l="fr">Sandwichs</span><span data-l="en">Sandwiches</span></button><button type="button" data-go="c-t2" class="">Bowls</button><button type="button" data-go="c-t3" class=""><span data-l="fr">À côté & desserts</span><span data-l="en">Sides & desserts</span></button></div>
+  </div></div>
+  <div class="carte-body" id="carteBody"><div class="wrap"><div class="carte-sheet" id="carteInner"><section class="carte-cat" id="c-t1"><div class="carte-banner"><svg class="ban-ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 58 12 21c8-7 32-7 40 0l-9 37z"/><path d="M12 21c3 4 7-1 10 2s7-3 10 0 7-3 10 0 6-2 10-2"/><path d="M15 33h33M17.5 43h29"/><path d="M22 14c2-3 6-4 10-4s8 1 10 4"/></svg><h3><small><span data-l="fr">Pain au levain</span><span data-l="en">Sourdough bread</span></small><span data-l="fr">Sandwichs</span><span data-l="en">Sandwiches</span></h3></div>
+        <div class="carte-items"><div class="c-item"><div class="c-thumb"><svg class="ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 58 12 21c8-7 32-7 40 0l-9 37z"/><path d="M12 21c3 4 7-1 10 2s7-3 10 0 7-3 10 0 6-2 10-2"/><path d="M15 33h33M17.5 43h29"/><path d="M22 14c2-3 6-4 10-4s8 1 10 4"/></svg></div><div><div class="item-top"><h4><span data-l="fr">Le Babek</span><span data-l="en">The Babek</span></h4><i></i><b>13,50 €</b></div><p><span data-l="fr">Volaille marinée, légumes de saison, feta, herbes, sauce maison</span><span data-l="en">Marinated chicken, seasonal vegetables, feta, herbs, house sauce</span></p></div></div><div class="c-item"><div class="c-thumb"><svg class="ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 40 40 16l16 10v18H8z"/><path d="M8 40h48"/><circle cx="22" cy="48" r="2.4"/><circle cx="38" cy="50" r="2"/><circle cx="46" cy="32" r="2.6"/><circle cx="32" cy="30" r="1.6"/></svg></div><div><div class="item-top"><h4>Halloumi Lover</h4><i></i><b>14,50 €</b></div><p><span data-l="fr">Halloumi grillé · végétarien</span><span data-l="en">Grilled halloumi · vegetarian</span></p></div></div><div class="c-item"><div class="c-thumb"><svg class="ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 30c0-9 11-15 24-15s24 6 24 15z"/><path d="M8 34c4 3 8-2 12 1s8-2 12 1 8-2 12 1 8-2 12-1"/><path d="M9 40h46"/><path d="M8 44h48c0 5-4 7-8 7H16c-4 0-8-2-8-7z"/><path d="M20 22l3 2M30 20l2 2M40 22l2 2"/></svg></div><div><div class="item-top"><h4>Grilled cheese</h4><i></i><b>7,50 €</b></div><p><span data-l="fr">Le croque fondant de la maison</span><span data-l="en">The house's melty toastie</span></p></div></div></div></section><section class="carte-cat" id="c-t2"><div class="carte-banner"><svg class="ban-ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 30h50c0 14-11 23-25 23S7 44 7 30z"/><path d="M20 30c-1-6 5-11 12-11 8 0 13 6 9 11"/><path d="M27 30c0-4 4-6 7-4"/><circle cx="32" cy="23" r="1.2"/><path d="M24 58h16"/></svg><h3><small><span data-l="fr">Sans pain</span><span data-l="en">No bread</span></small>Bowls</h3></div>
+        <div class="carte-items"><div class="c-item"><div class="c-thumb"><svg class="ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 30h50c0 14-11 23-25 23S7 44 7 30z"/><path d="M20 30c-1-6 5-11 12-11 8 0 13 6 9 11"/><path d="M27 30c0-4 4-6 7-4"/><circle cx="32" cy="23" r="1.2"/><path d="M24 58h16"/></svg></div><div><div class="item-top"><h4>Bolbek</h4><i></i><b>15,50 €</b></div><p><span data-l="fr">Boulgour, houmous, volaille marinée, légumes de saison</span><span data-l="en">Bulgur, hummus, marinated chicken, seasonal vegetables</span></p></div></div><div class="c-item"><div class="c-thumb"><svg class="ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="32" cy="46" rx="26" ry="8"/><circle cx="21" cy="36" r="7"/><circle cx="35" cy="34" r="7"/><circle cx="28" cy="24" r="7"/><circle cx="44" cy="40" r="5"/><path d="M19 35h0M34 33h0M27 23h0" stroke-width="2.6"/></svg></div><div><div class="item-top"><h4>Falafel bowl</h4><i></i><b>15,50 €</b></div><p><span data-l="fr">Falafels et légumes de saison · végétarien</span><span data-l="en">Falafel and seasonal vegetables · vegetarian</span></p></div></div></div></section><section class="carte-cat" id="c-t3"><div class="carte-banner"><svg class="ban-ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 30h28l-4 26H22z"/><path d="M22 30 20 10M27 30l-1-22M32 30V7M37 30l1-21M42 30l2-18"/><path d="M27 42c2 3 8 3 10 0"/></svg><h3><small><span data-l="fr">Pour compléter</span><span data-l="en">To go with it</span></small><span data-l="fr">À côté & desserts</span><span data-l="en">Sides & desserts</span></h3></div>
+        <div class="carte-items"><div class="c-item"><div class="c-thumb"><svg class="ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 30h28l-4 26H22z"/><path d="M22 30 20 10M27 30l-1-22M32 30V7M37 30l1-21M42 30l2-18"/><path d="M27 42c2 3 8 3 10 0"/></svg></div><div><div class="item-top"><h4><span data-l="fr">Frites au zaatar</span><span data-l="en">Zaatar fries</span></h4><i></i><b>4,00 €</b></div><p><span data-l="fr">Croustillantes, relevées au zaatar</span><span data-l="en">Crispy, with zaatar</span></p></div></div><div class="c-item"><div class="c-thumb"><svg class="ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="32" cy="34" rx="25" ry="12"/><path d="M14 34c0-5 8-8 18-8s18 3 18 8"/><path d="M22 34c2-4 8-5 12-3s4 6-1 7"/><circle cx="26" cy="30" r="1"/><circle cx="38" cy="33" r="1"/><path d="M7 34v4c0 7 11 12 25 12s25-5 25-12v-4"/></svg></div><div><div class="item-top"><h4><span data-l="fr">Houmous & pita</span><span data-l="en">Hummus & pita</span></h4><i></i><b>6,00 €</b></div><p><span data-l="fr">Houmous maison</span><span data-l="en">Homemade hummus</span></p></div></div><div class="c-item"><div class="c-thumb"><svg class="ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M34 14c-12 0-22 9-22 20 0 6 4 12 11 12h15c11 0 18-8 18-17 0-8-9-15-22-15z"/><path d="M38 46l6 9M46 46l6 7"/><circle cx="54" cy="54" r="2"/><circle cx="46" cy="56.5" r="2"/><path d="M20 28c3-4 7-6 12-6"/></svg></div><div><div class="item-top"><h4>Fried chicken</h4><i></i><b>9,00 €</b></div><p><span data-l="fr">Poulet croustillant</span><span data-l="en">Crispy chicken</span></p></div></div><div class="c-item"><div class="c-thumb"><svg class="ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 40c0-12 10-20 22-20s22 8 22 20z"/><path d="M10 40h44l-4 10H14z"/><path d="M20 30c4-4 8-4 12 0s8 4 12 0"/><circle cx="32" cy="16" r="3"/></svg></div><div><div class="item-top"><h4>Babettes</h4></div><p><span data-l="fr">Pommes dauphines façon churros</span><span data-l="en">Churro-style potato puffs</span></p></div></div><div class="c-item"><div class="c-thumb"><svg class="ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 30h50c0 14-11 23-25 23S7 44 7 30z"/><path d="M20 30c-1-6 5-11 12-11 8 0 13 6 9 11"/><path d="M27 30c0-4 4-6 7-4"/><circle cx="32" cy="23" r="1.2"/><path d="M24 58h16"/></svg></div><div><div class="item-top"><h4><span data-l="fr">Mousse au chocolat</span><span data-l="en">Chocolate mousse</span></h4></div><p><span data-l="fr">Praliné noisette et sarrasin</span><span data-l="en">Hazelnut and buckwheat praline</span></p></div></div></div></section><p class="carte-note"><span data-l="fr">Prix relevés sur la carte en ligne, à confirmer sur place. Les légumes changent avec les saisons.</span><span data-l="en">Prices taken from the online menu, to be confirmed on site. Vegetables change with the seasons.</span></p></div></div></div>
+</div>
+
+<script>
+// Opening hours, Monday first. Each day: list of [openMinute, closeMinute]; close may pass midnight (e.g. 1440).
+const SCHEDULE = [[], [[705, 855], [1140, 1335]], [[705, 855], [1140, 1335]], [[705, 855], [1140, 1335]], [[705, 855], [1140, 1335]], [[705, 855], [1140, 1335]], [[1140, 1335]]];
+const KEY = "babek-lang";
+const DAYS = {fr:["Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi","Dimanche"],en:["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]};
+const DAYS_SHORT = {fr:["lundi","mardi","mercredi","jeudi","vendredi","samedi","dimanche"],en:["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]};
+let lang = "fr";
+try { lang = localStorage.getItem(KEY) === "en" ? "en" : "fr"; } catch(e){}
+
+const hhmm = m => { m %= 1440; return String(Math.floor(m/60)).padStart(2,"0") + ":" + String(m%60).padStart(2,"0"); };
+const hr = (m, en) => { m %= 1440; const h = Math.floor(m/60), mi = m%60;
+  if (en) { const h12 = h%12 || 12; return h12 + (mi ? ":" + String(mi).padStart(2,"0") : "") + (h < 12 ? " am" : " pm"); }
+  return h + "h" + (mi ? String(mi).padStart(2,"0") : ""); };
+
+function parisNow(){
+  const p = new Intl.DateTimeFormat("en-GB",{timeZone:"Europe/Paris",weekday:"short",hour:"2-digit",minute:"2-digit",hour12:false}).formatToParts(new Date());
+  const g = t => p.find(x => x.type === t).value;
+  return {d:["Mon","Tue","Wed","Thu","Fri","Sat","Sun"].indexOf(g("weekday")), mins:(+g("hour"))%24*60 + (+g("minute"))};
+}
+
+function status(){
+  const {d, mins} = parisNow(), en = lang === "en";
+  // open now? (also check yesterday's slots that run past midnight)
+  for (const [a,b] of SCHEDULE[d]) if (mins >= a && mins < b) return {open:true, text: en ? `Open now · until ${hr(b,true)}` : `Ouvert · jusqu'à ${hr(b)}`};
+  for (const [a,b] of SCHEDULE[(d+6)%7]) if (b > 1440 && mins < b-1440) return {open:true, text: en ? `Open now · until ${hr(b,true)}` : `Ouvert · jusqu'à ${hr(b)}`};
+  // next opening
+  for (const [a] of SCHEDULE[d]) if (a > mins) return {open:false, text: en ? `Closed · opens today at ${hr(a,true)}` : `Fermé · ouvre aujourd'hui à ${hr(a)}`};
+  for (let k = 1; k <= 7; k++) {
+    const day = (d+k)%7, s = SCHEDULE[day];
+    if (s.length) {
+      const when = k === 1 ? (en ? "tomorrow" : "demain") : DAYS_SHORT[lang][day];
+      return {open:false, text: en ? `Closed · opens ${when} at ${hr(s[0][0],true)}` : `Fermé · ouvre ${when} à ${hr(s[0][0])}`};
+    }
+  }
+  return {open:false, text: en ? "Closed" : "Fermé"};
+}
+
+function render(){
+  document.documentElement.lang = lang;
+  document.querySelectorAll(".lang button").forEach(b => b.classList.toggle("on", b.dataset.lang === lang));
+  const {d} = parisNow();
+  document.getElementById("hours").innerHTML = DAYS[lang].map((name, i) =>
+    `<li class="${i === d ? "today" : ""}"><span>${name}</span><span>${SCHEDULE[i].length ? SCHEDULE[i].map(([a,b]) => hhmm(a) + " – " + hhmm(b)).join(" · ") : (lang === "en" ? "Closed" : "Fermé")}</span></li>`).join("");
+  const s = status();
+  document.getElementById("dot").classList.toggle("open", s.open);
+  document.getElementById("statusText").textContent = s.text;
+  document.getElementById("carteClose").setAttribute("aria-label", lang === "en" ? "Close the menu" : "Fermer la carte");
+}
+
+document.querySelectorAll(".lang button").forEach(b => b.addEventListener("click", () => {
+  lang = b.dataset.lang; try { localStorage.setItem(KEY, lang); } catch(e){} render();
+}));
+document.querySelectorAll(".tabs button").forEach(b => b.addEventListener("click", () => {
+  document.querySelectorAll(".tabs button").forEach(x => x.classList.toggle("on", x === b));
+  document.querySelectorAll(".menu-list").forEach(l => l.classList.toggle("on", l.id === b.dataset.tab));
+}));
+const nav = document.getElementById("nav");
+addEventListener("scroll", () => nav.classList.toggle("scrolled", scrollY > 40), {passive:true});
+if ("IntersectionObserver" in window) {
+  document.documentElement.classList.add("has-reveals");
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), {threshold:.08});
+  document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+}
+document.addEventListener("visibilitychange", () => document.documentElement.classList.toggle("page-hidden", document.hidden));
+document.getElementById("yr").textContent = new Date().getFullYear();
+
+// Full-screen menu card
+(() => {
+  const sheet = document.getElementById("carteSheet"), body = document.getElementById("carteBody"), tabs = document.getElementById("carteTabs");
+  let last = null;
+  const mark = id => tabs.querySelectorAll("button").forEach(b => { const on = b.dataset.go === id; b.classList.toggle("on", on); if (on) b.scrollIntoView({block:"nearest", inline:"nearest"}); });
+  const open = e => { if (e) e.preventDefault(); last = document.activeElement; sheet.hidden = false; document.body.classList.add("carte-lock"); body.scrollTop = 0; mark("c-t1"); document.getElementById("carteClose").focus(); };
+  const close = () => { sheet.hidden = true; document.body.classList.remove("carte-lock"); if (last) last.focus(); };
+  tabs.querySelectorAll("button").forEach(b => b.addEventListener("click", () => { document.getElementById(b.dataset.go).scrollIntoView({block:"start"}); mark(b.dataset.go); }));
+  body.addEventListener("scroll", () => {
+    const top = body.getBoundingClientRect().top + 140; let cur = null;
+    sheet.querySelectorAll(".carte-cat").forEach(s => { if (s.getBoundingClientRect().top < top) cur = s.id; });
+    if (cur) mark(cur);
+  }, {passive:true});
+  document.getElementById("carteClose").addEventListener("click", close);
+  addEventListener("keydown", e => { if (e.key === "Escape" && !sheet.hidden) close(); });
+  document.querySelectorAll(".js-carte").forEach(a => a.addEventListener("click", open));
+  document.querySelectorAll(".sig-grid .dish").forEach(d => { d.addEventListener("click", open); d.addEventListener("keydown", e => { if (e.key === "Enter") open(e); }); });
+})();
+
+render();
+setInterval(render, 60000);
+</script>
+</body>
+</html>
