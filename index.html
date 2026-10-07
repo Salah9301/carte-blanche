@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Carte Blanche Studio</title>
+<meta name="description" content="Carte Blanche, studio web pour restaurants : sites modernes, menus QR et cartes photo. Contact Hamza, +33 6 34 96 26 43.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@50..150,400..900&family=Hanken+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap">
+<style>
+/* Layout: a restaurant poster that turns into an order ticket. Ketchup-red stage, giant stretched type, the services read like a menu with dotted leaders. One deliberate look, no light/dark switch. */
+:root{
+  --sauce:#C1121C;      /* stage */
+  --sauce-deep:#8E0A12; /* shadows, pressed */
+  --ink:#1B0708;        /* darkest sections, text on mustard */
+  --cream:#FFF2DE;      /* text on red / ink, ticket paper */
+  --mustard:#FFC21F;    /* the one loud highlight */
+  --rule:rgba(255,242,222,.28);
+  --display:"Anybody","Arial Narrow",Impact,sans-serif;
+  --body:"Hanken Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"Space Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  --gutter:clamp(16px,4vw,48px);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--sauce);color:var(--cream);font:400 17px/1.6 var(--body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+img{max-width:100%;display:block}
+:focus-visible{outline:3px solid var(--mustard);outline-offset:3px}
+.wrap{max-width:1240px;margin:0 auto;padding-inline:var(--gutter)}
+html:not([lang="en"]) [data-l="en"],html[lang="en"] [data-l="fr"]{display:none!important}
+.label{font:700 12px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase}
+
+/* ---------- top bar ---------- */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--sauce);border-bottom:2px solid var(--ink)}
+.bar .wrap{display:flex;align-items:center;gap:16px;padding-block:12px}
+.logo{display:flex;align-items:baseline;gap:8px;text-decoration:none;font:900 22px/1 var(--display);font-stretch:62%;letter-spacing:.01em;text-transform:uppercase}
+.logo i{font-style:normal;color:var(--mustard)}
+.bar nav{display:flex;gap:22px;margin-left:auto}
+.bar nav a{text-decoration:none;font:600 14px/1 var(--body)}
+.bar nav a:hover{color:var(--mustard)}
+.lang{display:flex;border:2px solid var(--cream);border-radius:99px;overflow:hidden}
+.lang button{all:unset;cursor:pointer;font:700 12px/1 var(--mono);padding:7px 10px;letter-spacing:.08em}
+.lang button[aria-pressed="true"]{background:var(--cream);color:var(--sauce)}
+.btn{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font:800 15px/1 var(--body);padding:14px 22px;border-radius:99px;background:var(--mustard);color:var(--ink);border:2px solid var(--ink);box-shadow:4px 4px 0 var(--ink);transition:transform .15s,box-shadow .15s;cursor:pointer}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
+.btn:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--ink)}
+.btn.ghost{background:transparent;color:var(--cream);border-color:var(--cream);box-shadow:none}
+.btn.ghost:hover{background:var(--cream);color:var(--sauce)}
+.bar .btn{padding:10px 16px;font-size:14px;box-shadow:3px 3px 0 var(--ink)}
+
+/* ---------- hero ---------- */
+.hero{padding-block:clamp(36px,7vw,90px) 0;position:relative;overflow-x:clip}
+.hero .wrap{display:grid;grid-template-columns:1.25fr .75fr;gap:clamp(24px,4vw,56px);align-items:end}
+.hero .label{color:var(--mustard)}
+.hero h1{margin:18px 0 0;font:900 clamp(56px,11.5vw,168px)/.82 var(--display);font-stretch:58%;text-transform:uppercase;letter-spacing:-.01em;text-wrap:balance}
+.hero h1 span{display:block;animation:rise .7s cubic-bezier(.2,.8,.2,1) both}
+.hero h1 span:nth-child(2){animation-delay:.08s}
+.hero h1 span:nth-child(3){animation-delay:.16s;color:var(--mustard)}
+.hero h1 .stretch{font-stretch:150%;font-size:.62em;letter-spacing:-.02em}
+@keyframes rise{from{transform:translateY(.35em)}to{transform:none}}
+.hero p.lede{max-width:34ch;font-size:clamp(17px,1.6vw,20px);margin:26px 0 30px}
+.cta-row{display:flex;flex-wrap:wrap;gap:14px}
+.plate{position:relative;justify-self:end;width:100%;max-width:420px}
+.plate .photo{aspect-ratio:4/5;border:3px solid var(--ink);border-radius:18px;overflow:hidden;transform:rotate(3deg);box-shadow:10px 10px 0 var(--ink);background:var(--ink)}
+.plate .photo img{width:100%;height:100%;object-fit:cover}
+.plate .ticket{position:absolute;left:-28px;bottom:28px;transform:rotate(-5deg);background:var(--cream);color:var(--ink);font:400 12px/1.5 var(--mono);padding:14px 16px 16px;width:min(220px,70%);box-shadow:4px 4px 0 var(--ink)}
+.plate .ticket b{display:block;font-weight:700;letter-spacing:.08em;border-bottom:1px dashed var(--ink);padding-bottom:6px;margin-bottom:6px}
+.plate .ticket .row{display:flex;justify-content:space-between;gap:8px}
+.stamp{position:absolute;top:-22px;right:-14px;width:108px;height:108px;border-radius:50%;background:var(--mustard);color:var(--ink);display:grid;place-items:center;text-align:center;font:900 15px/1 var(--display);font-stretch:70%;text-transform:uppercase;border:3px solid var(--ink);transform:rotate(12deg);animation:spin 18s linear infinite}
+@keyframes spin{to{transform:rotate(372deg)}}
+
+/* ---------- ticker ---------- */
+.ticker{margin-top:clamp(40px,6vw,80px);background:var(--mustard);color:var(--ink);border-block:3px solid var(--ink);overflow:hidden;transform:rotate(-1.5deg) scale(1.03)}
+.ticker .track{display:flex;width:max-content;animation:roll 28s linear infinite}
+.ticker span{font:900 clamp(26px,4vw,46px)/1 var(--display);font-stretch:70%;text-transform:uppercase;padding:14px 0;white-space:nowrap}
+.ticker span::after{content:"✱";margin:0 .5em}
+@keyframes roll{to{transform:translateX(-50%)}}
+
+/* ---------- section heads ---------- */
+section{scroll-margin-top:70px}
+.sec{padding-block:clamp(70px,10vw,130px)}
+.head{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:20px;margin-bottom:clamp(30px,5vw,56px)}
+.head h2{margin:10px 0 0;font:900 clamp(44px,7.5vw,104px)/.86 var(--display);font-stretch:60%;text-transform:uppercase;text-wrap:balance}
+.head p{max-width:40ch;margin:0}
+
+/* ---------- la carte (services) ---------- */
+.carte{background:var(--ink)}
+.carte .label{color:var(--mustard)}
+.menu{list-style:none;margin:0;padding:0;border-top:2px solid var(--cream)}
+.menu li{display:grid;grid-template-columns:6.5rem 1fr auto;gap:0 18px;align-items:baseline;padding:22px 12px;border-bottom:1px solid var(--rule);transition:background .2s,color .2s}
+.menu li:hover{background:var(--mustard);color:var(--ink)}
+.menu .tag{font:700 12px/1 var(--mono);letter-spacing:.1em;opacity:.7}
+.menu .name{display:flex;align-items:baseline;gap:12px;min-width:0}
+.menu h3{margin:0;font:800 clamp(24px,3.2vw,40px)/1 var(--display);font-stretch:75%;text-transform:uppercase;white-space:nowrap}
+.menu .dots{flex:1;border-bottom:3px dotted currentColor;opacity:.45;transform:translateY(-6px);min-width:24px}
+.menu .price{font:700 14px/1 var(--mono);text-transform:uppercase;letter-spacing:.06em;white-space:nowrap}
+.menu p{grid-column:2/4;margin:8px 0 0;max-width:62ch;opacity:.85}
+.menu-note{margin:22px 12px 0;font:400 13px/1.6 var(--mono);opacity:.7}
+
+/* ---------- showcase ---------- */
+.show .label{color:var(--mustard)}
+.case{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(24px,4vw,56px);align-items:start}
+.screen{display:block;text-decoration:none;color:inherit;background:var(--ink);border:3px solid var(--ink);border-radius:16px;overflow:hidden;box-shadow:12px 12px 0 var(--sauce-deep)}
+.screen .chrome{display:flex;align-items:center;gap:7px;padding:10px 14px;background:#2a0f10;font:400 12px/1 var(--mono);color:var(--cream)}
+.screen .chrome i{width:10px;height:10px;border-radius:50%;background:var(--cream);opacity:.35}
+.screen .chrome span{margin-left:10px;opacity:.7;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.screen .hero-shot{position:relative;aspect-ratio:16/10}
+.screen .hero-shot img{width:100%;height:100%;object-fit:cover;filter:saturate(1.08)}
+.screen .hero-shot div{position:absolute;inset:auto 0 0 0;padding:28px 24px 20px;background:linear-gradient(transparent,rgba(27,7,8,.92))}
+.screen .hero-shot strong{display:block;font:600 clamp(26px,3.4vw,42px)/1 Georgia,"Times New Roman",serif;color:var(--cream)}
+.screen .hero-shot small{font:400 12px/1 var(--mono);color:var(--mustard);letter-spacing:.1em;text-transform:uppercase}
+.dishes{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;background:var(--ink)}
+.dishes img{aspect-ratio:1;object-fit:cover;width:100%}
+.case-info h3{margin:0 0 8px;font:900 clamp(40px,5vw,64px)/.9 var(--display);font-stretch:62%;text-transform:uppercase}
+.case-info .where{font:700 13px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--mustard)}
+.checks{list-style:none;padding:0;margin:26px 0 30px;display:grid;gap:12px}
+.checks li{display:grid;grid-template-columns:28px 1fr;gap:10px;align-items:start}
+.checks li::before{content:"✓";display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--cream);color:var(--sauce);font:800 14px/1 var(--body);margin-top:2px}
+.soon{margin-top:clamp(36px,5vw,60px);display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.soon div{border:2px dashed var(--rule);border-radius:14px;padding:22px;min-height:120px;display:flex;flex-direction:column;justify-content:space-between}
+.soon b{font:800 22px/1 var(--display);font-stretch:70%;text-transform:uppercase;opacity:.75}
+
+.more-head{margin-top:clamp(50px,7vw,90px);display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px 24px;border-top:2px solid var(--cream);padding-top:20px}
+.more-head h3{margin:0;color:var(--mustard)}
+.more-head p{margin:0;max-width:44ch}
+.concepts{margin-top:24px;display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.concept{display:grid;gap:14px;min-width:0}
+.mock{border:3px solid var(--ink);border-radius:12px;overflow:hidden;box-shadow:6px 6px 0 var(--ink);transition:transform .2s}
+.concept:hover .mock{transform:translate(-3px,-3px) rotate(-1deg)}
+.mock .chrome{display:flex;gap:5px;padding:7px 9px;background:var(--ink)}
+.mock .chrome i{width:7px;height:7px;border-radius:50%;background:var(--cream);opacity:.35}
+.mock-hero{aspect-ratio:4/3.4;padding:18px 16px;display:flex;flex-direction:column;justify-content:flex-end;gap:6px;position:relative;overflow:hidden}
+.mock-hero small{font:700 9px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;opacity:.75}
+.mock-hero strong{font-size:28px;line-height:.95;font-weight:700}
+.mock-hero em{font-style:normal;font-size:13px;opacity:.85}
+.mock-btn{align-self:flex-start;margin-top:6px;font:700 11px/1 var(--body);padding:8px 12px;border-radius:99px}
+.concept-info h4{margin:4px 0 2px;font:800 22px/1 var(--display);font-stretch:72%;text-transform:uppercase}
+.concept-info p{margin:0;font-size:14px;opacity:.85}
+.badge{display:inline-block;font:700 10px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;border:1.5px solid var(--mustard);color:var(--mustard);padding:4px 7px;border-radius:4px}
+/* each concept carries its own identity (fixed brand colours, not page tokens) */
+.c-maree .mock-hero{background:radial-gradient(circle at 80% 15%,#2c4f7c 0 22%,transparent 23%),#0f2238;color:#f4efe6}
+.c-maree .mock-hero::before{content:"";position:absolute;left:0;right:0;top:46%;height:30px;background:repeating-linear-gradient(90deg,transparent 0 14px,rgba(244,239,230,.25) 14px 15px);opacity:.6}
+.c-maree strong{font-family:Georgia,"Times New Roman",serif;font-style:italic;font-weight:400}
+.c-maree .mock-btn{background:#f4efe6;color:#0f2238}
+.c-forno .mock-hero{background:radial-gradient(circle at 82% 22%,#e9452f 0 11%,#f6e7c8 11.5% 15%,transparent 15.5%),#1f5a3a;color:#f6e7c8}
+.c-forno strong{font-family:var(--display);font-stretch:120%;font-weight:900;text-transform:lowercase;font-size:24px}
+.c-forno .mock-btn{background:#e9452f;color:#fff}
+.c-abbaye .mock-hero{background:repeating-linear-gradient(90deg,#f7f0de 0 18px,#e7eef8 18px 36px);color:#173a7a}
+.c-abbaye .mock-hero::before{content:"";position:absolute;top:14px;right:14px;width:62px;height:62px;border-radius:50%;background:radial-gradient(circle,#d99a3d 0 55%,#b8742a 56% 100%);box-shadow:inset 0 0 0 5px rgba(255,255,255,.25)}
+.c-abbaye strong{font-family:Georgia,serif;font-weight:700;font-size:24px}
+.c-abbaye .mock-btn{background:#173a7a;color:#f7f0de}
+.c-orne .mock-hero{background:#0b0b0c;color:#f2f2f0}
+.c-orne .mock-hero::before{content:"";position:absolute;top:18px;right:18px;width:46px;height:46px;border-radius:50%;background:#d7262e}
+.c-orne strong{font-family:var(--body);font-weight:500;letter-spacing:.18em;text-transform:uppercase;font-size:18px}
+.c-orne .mock-btn{background:transparent;color:#f2f2f0;border:1px solid #f2f2f0}
+
+/* ---------- process ---------- */
+.process{background:var(--mustard);color:var(--ink)}
+.process .head h2{color:var(--ink)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:3px solid var(--ink)}
+.step{padding:28px 24px 8px 0;border-right:2px solid var(--ink)}
+.step + .step{padding-left:24px}
+.step:last-child{border-right:0}
+.step .n{font:900 clamp(64px,8vw,110px)/.8 var(--display);font-stretch:55%;color:var(--sauce)}
+.step h3{margin:14px 0 8px;font:800 26px/1 var(--display);font-stretch:75%;text-transform:uppercase}
+.step p{margin:0}
+.step .when{display:inline-block;margin-top:14px;font:700 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;background:var(--ink);color:var(--mustard);padding:6px 9px;border-radius:4px}
+
+/* ---------- price ---------- */
+.price-sec .wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,5vw,70px);align-items:center}
+.big-q{font:900 clamp(54px,9vw,128px)/.84 var(--display);font-stretch:58%;text-transform:uppercase;margin:12px 0 0}
+.big-q em{font-style:normal;color:var(--mustard)}
+.receipt{background:var(--cream);color:var(--ink);padding:28px 26px 34px;font:400 14px/1.7 var(--mono);box-shadow:8px 8px 0 var(--ink);position:relative;transform:rotate(1.2deg)}
+.receipt::after{content:"";position:absolute;left:0;right:0;bottom:-12px;height:12px;background:linear-gradient(-45deg,transparent 8px,var(--cream) 0) 0 0/16px 12px,linear-gradient(45deg,transparent 8px,var(--cream) 0) 0 0/16px 12px}
+.receipt h3{margin:0 0 4px;font:700 14px/1.4 var(--mono);letter-spacing:.12em;text-align:center}
+.receipt .sub{text-align:center;opacity:.65;font-size:12px;margin-bottom:14px}
+.receipt .ln{display:flex;justify-content:space-between;gap:12px;border-bottom:1px dashed rgba(27,7,8,.3);padding:6px 0}
+.receipt .ln span:last-child{white-space:nowrap;font-weight:700}
+.receipt .tot{display:flex;justify-content:space-between;margin-top:14px;font-weight:700;font-size:16px}
+
+/* ---------- contact ---------- */
+.contact{background:var(--ink)}
+.contact .label{color:var(--mustard)}
+.contact .wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,5vw,70px)}
+.phone{display:block;margin:18px 0 6px;font:900 clamp(40px,6vw,80px)/.9 var(--display);font-stretch:55%;white-space:nowrap;color:var(--mustard);text-decoration:none;user-select:all;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.who{font:700 14px/1.4 var(--mono);letter-spacing:.06em;text-transform:uppercase}
+.contact .cta-row{margin-top:26px}
+.copied{font:400 13px/1 var(--mono);color:var(--mustard);min-height:1em;margin-top:12px}
+form{display:grid;gap:14px;background:var(--sauce);border:2px solid var(--cream);border-radius:18px;padding:clamp(20px,3vw,32px)}
+form h3{margin:0 0 4px;font:900 34px/1 var(--display);font-stretch:65%;text-transform:uppercase}
+label{display:grid;gap:6px;font:700 12px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase}
+input,select,textarea{font:500 16px/1.4 var(--body);color:var(--ink);background:var(--cream);border:2px solid var(--ink);border-radius:10px;padding:12px 14px;width:100%}
+textarea{min-height:96px;resize:vertical}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips label{display:inline-flex;align-items:center;gap:6px;text-transform:none;letter-spacing:0;font:600 14px/1 var(--body);background:rgba(255,242,222,.12);border:1.5px solid var(--cream);border-radius:99px;padding:8px 12px;cursor:pointer}
+.chips input{width:auto;accent-color:var(--mustard)}
+.chips label:has(input:checked){background:var(--mustard);color:var(--ink);border-color:var(--ink)}
+.form-note{font:400 12px/1.5 var(--mono);opacity:.8;margin:0}
+.wa-out{display:none;font:400 13px/1.5 var(--mono);background:var(--ink);padding:12px 14px;border-radius:10px}
+.wa-out.on{display:block}
+.wa-out a{color:var(--mustard)}
+
+footer{background:var(--sauce);border-top:2px solid var(--ink);padding-block:28px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-between;align-items:center;font:400 13px/1.5 var(--mono)}
+.giant{font:900 clamp(60px,17vw,250px)/.8 var(--display);font-stretch:52%;text-transform:uppercase;color:var(--sauce-deep);text-align:center;padding-top:30px;letter-spacing:-.01em;white-space:nowrap;overflow:hidden}
+
+/* ---------- responsive ---------- */
+@media (max-width:900px){
+  .bar nav{display:none}
+  .lang{margin-left:auto}
+  .hero .wrap,.case,.price-sec .wrap,.contact .wrap{grid-template-columns:1fr}
+  .plate{justify-self:center;max-width:340px;margin-top:20px}
+  .steps{grid-template-columns:1fr}
+  .step,.step + .step{border-right:0;border-bottom:2px solid var(--ink);padding:24px 0}
+  .step:last-child{border-bottom:0}
+  .concepts{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:560px){
+  .bar .btn span.t{display:none}
+  .menu li{grid-template-columns:1fr auto;padding:18px 4px}
+  .menu .tag{grid-column:1/-1;margin-bottom:8px}
+  .menu p{grid-column:1/-1}
+  .menu h3{white-space:normal}
+  .menu .dots{display:none}
+  .two{grid-template-columns:1fr}
+  .concepts{grid-template-columns:1fr 1fr;gap:14px}
+  .mock-hero strong{font-size:20px}
+  .plate .ticket{left:-6px}
+  .stamp{right:-6px;width:90px;height:90px;font-size:13px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
+
+</head>
+<body>
+<header class="bar">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Carte Blanche">Carte<i>✱</i>Blanche</a>
+    <nav aria-label="Sections">
+      <a href="#carte"><span data-l="fr">La carte</span><span data-l="en">Services</span></a>
+      <a href="#projets"><span data-l="fr">Projets</span><span data-l="en">Work</span></a>
+      <a href="#prix"><span data-l="fr">Prix</span><span data-l="en">Pricing</span></a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="lang" role="group" aria-label="Langue / Language">
+      <button type="button" id="lang-fr" aria-pressed="true">FR</button>
+      <button type="button" id="lang-en" aria-pressed="false">EN</button>
+    </div>
+    <a class="btn" href="https://wa.me/33634962643" target="_blank" rel="noopener">✆ <span class="t">WhatsApp</span></a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <div class="label"><span data-l="fr">Studio web pour restaurants · France</span><span data-l="en">Web studio for restaurants · France</span></div>
+        <h1>
+          <span data-l="fr">Votre carte</span><span data-l="en">Your menu</span>
+          <span class="stretch" data-l="fr">mérite mieux</span><span class="stretch" data-l="en">deserves better</span>
+          <span data-l="fr">qu'un PDF.</span><span data-l="en">than a PDF.</span>
+        </h1>
+        <p class="lede">
+          <span data-l="fr">On crée des sites et des menus digitaux qui donnent faim. Vos plats en grand, vos prix toujours à jour, et un bouton pour appeler ou commander en un geste.</span>
+          <span data-l="en">We build websites and digital menus that make people hungry. Your dishes shown big, your prices always current, and one tap to call or order.</span>
+        </p>
+        <div class="cta-row">
+          <a class="btn" href="#contact"><span data-l="fr">Demander un devis</span><span data-l="en">Get a quote</span> →</a>
+          <a class="btn ghost" href="#projets"><span data-l="fr">Voir un exemple</span><span data-l="en">See an example</span></a>
+        </div>
+      </div>
+      <div class="plate">
+        <div class="photo"><img src="img/hero.jpg" alt="Plat servi chez Chez Abbas, Caen" width="1400" height="933"></div>
+        <div class="ticket" aria-hidden="true">
+          <b><span data-l="fr">COMMANDE #001</span><span data-l="en">ORDER #001</span></b>
+          <div class="row"><span><span data-l="fr">Site web</span><span data-l="en">Website</span></span><span>x1</span></div>
+          <div class="row"><span><span data-l="fr">Menu QR</span><span data-l="en">QR menu</span></span><span>x1</span></div>
+          <div class="row"><span>FR / EN</span><span>x2</span></div>
+          <div class="row"><span><span data-l="fr">Faim</span><span data-l="en">Hunger</span></span><span>∞</span></div>
+        </div>
+        <div class="stamp" aria-hidden="true"><span data-l="fr">Fait<br>maison</span><span data-l="en">Made<br>in-house</span></div>
+      </div>
+    </div>
+    <div class="ticker" aria-hidden="true">
+      <div class="track">
+        <span data-l="fr">Sites restaurant</span><span data-l="fr">Menus QR</span><span data-l="fr">Photos plein écran</span><span data-l="fr">FR / EN</span><span data-l="fr">Appel en 1 clic</span><span data-l="fr">Google Maps</span>
+        <span data-l="fr">Sites restaurant</span><span data-l="fr">Menus QR</span><span data-l="fr">Photos plein écran</span><span data-l="fr">FR / EN</span><span data-l="fr">Appel en 1 clic</span><span data-l="fr">Google Maps</span>
+        <span data-l="en">Restaurant sites</span><span data-l="en">QR menus</span><span data-l="en">Full-screen photos</span><span data-l="en">FR / EN</span><span data-l="en">One-tap calling</span><span data-l="en">Google Maps</span>
+        <span data-l="en">Restaurant sites</span><span data-l="en">QR menus</span><span data-l="en">Full-screen photos</span><span data-l="en">FR / EN</span><span data-l="en">One-tap calling</span><span data-l="en">Google Maps</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="carte sec" id="carte">
+    <div class="wrap">
+      <div class="head">
+        <div>
+          <div class="label"><span data-l="fr">La carte</span><span data-l="en">The menu</span></div>
+          <h2><span data-l="fr">Ce qu'on sert</span><span data-l="en">What we serve</span></h2>
+        </div>
+        <p><span data-l="fr">Prenez un plat ou tout le menu. Chaque restaurant reçoit une formule à sa mesure.</span><span data-l="en">Order one dish or the whole menu. Every restaurant gets a package built for it.</span></p>
+      </div>
+      <ul class="menu">
+        <li>
+          <span class="tag"><span data-l="fr">Plat</span><span data-l="en">Main</span></span>
+          <div class="name"><h3><span data-l="fr">Site restaurant</span><span data-l="en">Restaurant website</span></h3><span class="dots"></span></div>
+          <span class="price"><span data-l="fr">Sur devis</span><span data-l="en">On quote</span></span>
+          <p><span data-l="fr">Un site rapide et moderne à votre image : accueil, histoire, plats signature, horaires, adresse et avis. Pensé d'abord pour le téléphone.</span><span data-l="en">A fast, modern site that looks like you: home, story, signature dishes, hours, address and reviews. Designed for phones first.</span></p>
+        </li>
+        <li>
+          <span class="tag"><span data-l="fr">Plat</span><span data-l="en">Main</span></span>
+          <div class="name"><h3><span data-l="fr">Menu digital QR</span><span data-l="en">QR digital menu</span></h3><span class="dots"></span></div>
+          <span class="price"><span data-l="fr">Sur devis</span><span data-l="en">On quote</span></span>
+          <p><span data-l="fr">Un QR code sur la table, la carte s'ouvre sur le téléphone. Vous changez un prix, il change partout, sans réimprimer.</span><span data-l="en">A QR code on the table opens the menu on any phone. Change a price once and it updates everywhere, no reprinting.</span></p>
+        </li>
+        <li>
+          <span class="tag"><span data-l="fr">Spécialité</span><span data-l="en">Signature</span></span>
+          <div class="name"><h3><span data-l="fr">Carte photo plein écran</span><span data-l="en">Full-screen photo menu</span></h3><span class="dots"></span></div>
+          <span class="price"><span data-l="fr">Sur devis</span><span data-l="en">On quote</span></span>
+          <p><span data-l="fr">Chaque plat en grande photo avec son prix et sa description. Le client choisit avec les yeux.</span><span data-l="en">Every dish as a large photo with its price and description. Customers choose with their eyes.</span></p>
+        </li>
+        <li>
+          <span class="tag">Extra</span>
+          <div class="name"><h3><span data-l="fr">Version bilingue</span><span data-l="en">Bilingual version</span></h3><span class="dots"></span></div>
+          <span class="price"><span data-l="fr">Sur devis</span><span data-l="en">On quote</span></span>
+          <p><span data-l="fr">Français et anglais (ou une autre langue) en un bouton, pour les touristes et les étudiants.</span><span data-l="en">French and English (or another language) on one button, for tourists and students.</span></p>
+        </li>
+        <li>
+          <span class="tag">Extra</span>
+          <div class="name"><h3><span data-l="fr">Appel, WhatsApp, itinéraire</span><span data-l="en">Call, WhatsApp, directions</span></h3><span class="dots"></span></div>
+          <span class="price"><span data-l="fr">Sur devis</span><span data-l="en">On quote</span></span>
+          <p><span data-l="fr">Des boutons toujours visibles pour appeler, écrire ou venir. Plus de commandes, moins de clients perdus.</span><span data-l="en">Buttons that stay on screen to call, message or get directions. More orders, fewer lost customers.</span></p>
+        </li>
+        <li>
+          <span class="tag">Dessert</span>
+          <div class="name"><h3><span data-l="fr">Mise en ligne et suivi</span><span data-l="en">Hosting and updates</span></h3><span class="dots"></span></div>
+          <span class="price"><span data-l="fr">Sur devis</span><span data-l="en">On quote</span></span>
+          <p><span data-l="fr">On met le site en ligne et on s'occupe des changements : nouveau plat, nouveaux prix, horaires d'été.</span><span data-l="en">We put the site online and handle changes: a new dish, new prices, summer hours.</span></p>
+        </li>
+      </ul>
+      <p class="menu-note"><span data-l="fr">Service compris. Photos, textes et traduction possibles sur demande.</span><span data-l="en">Service included. Photos, copywriting and translation available on request.</span></p>
+    </div>
+  </section>
+
+  <section class="show sec" id="projets">
+    <div class="wrap">
+      <div class="head">
+        <div>
+          <div class="label"><span data-l="fr">Projets</span><span data-l="en">Work</span></div>
+          <h2><span data-l="fr">Sorti de cuisine</span><span data-l="en">Fresh from the kitchen</span></h2>
+        </div>
+      </div>
+      <div class="case">
+        <a class="screen" href="chez-abbas/" target="_blank" rel="noopener" aria-label="Ouvrir la démo Chez Abbas">
+          <div class="chrome"><i></i><i></i><i></i><span>chez-abbas · Caen</span></div>
+          <div class="hero-shot">
+            <img src="img/hero.jpg" alt="Page d'accueil du site Chez Abbas" loading="lazy">
+            <div><small>Kebab · Caen</small><strong>Chez Abbas</strong></div>
+          </div>
+          <div class="dishes">
+            <img src="img/dish-a.jpg" alt="Assiette Chez Abbas" loading="lazy">
+            <img src="img/dish-b.jpg" alt="Sandwich Chez Abbas" loading="lazy">
+            <img src="img/dish-c.jpg" alt="Dürüm Chez Abbas" loading="lazy">
+            <img src="img/dish-d.jpg" alt="Poulet grillé Chez Abbas" loading="lazy">
+          </div>
+        </a>
+        <div class="case-info">
+          <div class="where">24 av. de la Libération · 14000 Caen</div>
+          <h3 style="margin-top:14px">Chez Abbas Kebab</h3>
+          <p><span data-l="fr">Un kebab de quartier avec une vraie identité : brun chaud, orange vif, photos maison. On a gardé son caractère et on l'a rendu premium.</span><span data-l="en">A neighbourhood kebab shop with a real identity: warm brown, bright orange, its own photos. We kept its character and made it premium.</span></p>
+          <ul class="checks">
+            <li><span><span data-l="fr">Carte photo plein écran qui s'ouvre depuis chaque plat</span><span data-l="en">Full-screen photo menu that opens from every dish</span></span></li>
+            <li><span><span data-l="fr">Français et anglais en un bouton</span><span data-l="en">French and English on one button</span></span></li>
+            <li><span><span data-l="fr">Barre d'appel fixe sur téléphone</span><span data-l="en">Sticky call bar on phones</span></span></li>
+            <li><span><span data-l="fr">Horaires, plan et avis sur une seule page</span><span data-l="en">Hours, map and reviews on one page</span></span></li>
+          </ul>
+          <a class="btn" href="chez-abbas/" target="_blank" rel="noopener"><span data-l="fr">Ouvrir la démo</span><span data-l="en">Open the demo</span> ↗</a>
+        </div>
+      </div>
+      <div class="more-head"><h3 class="label"><span data-l="fr">Concepts pour Caen</span><span data-l="en">Concepts for Caen</span></h3><p><span data-l="fr">Quatre maquettes, quatre styles. Chaque restaurant a sa propre identité.</span><span data-l="en">Four mockups, four styles. Every restaurant gets its own identity.</span></p></div>
+      <div class="concepts">
+        <article class="concept c-maree">
+          <div class="mock"><div class="chrome"><i></i><i></i><i></i></div><div class="mock-hero"><small>Le Vaugueux · Caen</small><strong>La Marée</strong><em><span data-l="fr">Le port, dans l'assiette.</span><span data-l="en">The harbour, on a plate.</span></em><span class="mock-btn"><span data-l="fr">Voir la carte</span><span data-l="en">See the menu</span></span></div></div>
+          <div class="concept-info"><span class="badge">Concept</span><h4>La Marée</h4><p><span data-l="fr">Poissons et fruits de mer · marine et chic</span><span data-l="en">Fish and seafood · navy and chic</span></p></div>
+        </article>
+        <article class="concept c-forno">
+          <div class="mock"><div class="chrome"><i></i><i></i><i></i></div><div class="mock-hero"><small>Saint-Pierre · Caen</small><strong>Forno Saint-Pierre</strong><em><span data-l="fr">Pâte 48 h, four à 450°</span><span data-l="en">48-hour dough, 450° oven</span></em><span class="mock-btn"><span data-l="fr">Voir la carte</span><span data-l="en">See the menu</span></span></div></div>
+          <div class="concept-info"><span class="badge">Concept</span><h4>Forno Saint-Pierre</h4><p><span data-l="fr">Pizzeria au feu de bois · vert, crème, joyeux</span><span data-l="en">Wood-fired pizzeria · green, cream, playful</span></p></div>
+        </article>
+        <article class="concept c-abbaye">
+          <div class="mock"><div class="chrome"><i></i><i></i><i></i></div><div class="mock-hero"><small>Abbaye-aux-Hommes · Caen</small><strong>Crêperie de l'Abbaye</strong><em><span data-l="fr">Galettes, cidre, beurre salé</span><span data-l="en">Galettes, cider, salted butter</span></em><span class="mock-btn"><span data-l="fr">Voir la carte</span><span data-l="en">See the menu</span></span></div></div>
+          <div class="concept-info"><span class="badge">Concept</span><h4>Crêperie de l'Abbaye</h4><p><span data-l="fr">Crêperie normande · rayures et tradition</span><span data-l="en">Normandy crêperie · stripes and tradition</span></p></div>
+        </article>
+        <article class="concept c-orne">
+          <div class="mock"><div class="chrome"><i></i><i></i><i></i></div><div class="mock-hero"><small>Presqu'île · Caen</small><strong>Rive Orne Sushi</strong><em><span data-l="fr">Omakase au bord de l'Orne</span><span data-l="en">Omakase by the river</span></em><span class="mock-btn"><span data-l="fr">Voir la carte</span><span data-l="en">See the menu</span></span></div></div>
+          <div class="concept-info"><span class="badge">Concept</span><h4>Rive Orne Sushi</h4><p><span data-l="fr">Bar à sushi · noir et minimal</span><span data-l="en">Sushi bar · black and minimal</span></p></div>
+        </article>
+      </div>
+      <p class="menu-note" style="margin-left:0"><span data-l="fr">Les concepts sont des maquettes de démonstration. Ils seront remplacés par nos clients.</span><span data-l="en">Concepts are demonstration mockups. They will be replaced by real clients.</span></p>
+    </div>
+    </div>
+  </section>
+
+  <section class="process sec">
+    <div class="wrap">
+      <div class="head">
+        <div>
+          <div class="label"><span data-l="fr">Comment ça marche</span><span data-l="en">How it works</span></div>
+          <h2><span data-l="fr">Commande, cuisson, service</span><span data-l="en">Order, cook, serve</span></h2>
+        </div>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="n">1</div>
+          <h3><span data-l="fr">On passe vous voir</span><span data-l="en">We come by</span></h3>
+          <p><span data-l="fr">Vous nous montrez votre carte, vos photos, votre style. On vous propose une maquette.</span><span data-l="en">You show us your menu, photos and style. We send you a first design.</span></p>
+          <span class="when"><span data-l="fr">Gratuit</span><span data-l="en">Free</span></span>
+        </div>
+        <div class="step">
+          <div class="n">2</div>
+          <h3><span data-l="fr">On cuisine le site</span><span data-l="en">We build it</span></h3>
+          <p><span data-l="fr">Textes, photos, menu, traduction. Vous validez chaque étape sur votre téléphone.</span><span data-l="en">Copy, photos, menu, translation. You approve each step on your phone.</span></p>
+          <span class="when"><span data-l="fr">Vous validez</span><span data-l="en">You approve</span></span>
+        </div>
+        <div class="step">
+          <div class="n">3</div>
+          <h3><span data-l="fr">On sert</span><span data-l="en">We serve it</span></h3>
+          <p><span data-l="fr">Mise en ligne, QR codes pour vos tables, et on reste là pour les changements.</span><span data-l="en">Go live, QR codes for your tables, and we stay on for changes.</span></p>
+          <span class="when"><span data-l="fr">En ligne</span><span data-l="en">Live</span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="price-sec sec" id="prix">
+    <div class="wrap">
+      <div>
+        <div class="label" style="color:var(--mustard)"><span data-l="fr">Prix</span><span data-l="en">Pricing</span></div>
+        <p class="big-q"><span data-l="fr">Le prix ? <em>Selon la carte.</em></span><span data-l="en">The price? <em>Depends on the menu.</em></span></p>
+        <p style="max-width:42ch;margin-top:24px"><span data-l="fr">Un food truck n'a pas besoin du même site qu'une brasserie de 120 couverts. On vous donne un prix clair après avoir vu votre restaurant, sans frais cachés.</span><span data-l="en">A food truck doesn't need the same site as a 120-seat brasserie. We give you a clear price after seeing your restaurant, with no hidden costs.</span></p>
+      </div>
+      <div class="receipt" aria-label="Ce qui fait varier le prix">
+        <h3><span data-l="fr">CE QUI FAIT LE PRIX</span><span data-l="en">WHAT SETS THE PRICE</span></h3>
+        <div class="sub">CARTE BLANCHE · <span data-l="fr">TICKET</span><span data-l="en">RECEIPT</span></div>
+        <div class="ln"><span><span data-l="fr">Nombre de plats à la carte</span><span data-l="en">Number of dishes</span></span><span>10 → 80+</span></div>
+        <div class="ln"><span><span data-l="fr">Langues</span><span data-l="en">Languages</span></span><span>1 → 3</span></div>
+        <div class="ln"><span><span data-l="fr">Photos des plats</span><span data-l="en">Dish photos</span></span><span><span data-l="fr">vous / nous</span><span data-l="en">yours / ours</span></span></div>
+        <div class="ln"><span><span data-l="fr">Menu QR pour les tables</span><span data-l="en">Table QR menu</span></span><span><span data-l="fr">option</span><span data-l="en">option</span></span></div>
+        <div class="ln"><span><span data-l="fr">Suivi et mises à jour</span><span data-l="en">Updates and care</span></span><span><span data-l="fr">option</span><span data-l="en">option</span></span></div>
+        <div class="tot"><span>TOTAL</span><span><span data-l="fr">SUR DEVIS</span><span data-l="en">ON QUOTE</span></span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact sec" id="contact">
+    <div class="wrap">
+      <div>
+        <div class="label"><span data-l="fr">Contact</span><span data-l="en">Contact</span></div>
+        <h2 class="big-q" style="margin-top:12px"><span data-l="fr">Parlons de votre carte.</span><span data-l="en">Let's talk about your menu.</span></h2>
+        <a class="phone" href="tel:+33634962643" id="phone">+33 6 34 96 26 43</a>
+        <div class="who"><span data-l="fr">Hamza · appel ou WhatsApp</span><span data-l="en">Hamza · call or WhatsApp</span></div>
+        <div class="cta-row">
+          <a class="btn" href="https://wa.me/33634962643" target="_blank" rel="noopener">WhatsApp ↗</a>
+          <button class="btn ghost" type="button" id="copy"><span data-l="fr">Copier le numéro</span><span data-l="en">Copy number</span></button>
+        </div>
+        <div class="copied" id="copied" aria-live="polite"></div>
+      </div>
+      <form id="quote" novalidate>
+        <h3><span data-l="fr">Votre commande</span><span data-l="en">Your order</span></h3>
+        <div class="two">
+          <label for="q-resto"><span data-l="fr">Restaurant</span><span data-l="en">Restaurant</span><input id="q-resto" name="resto" required placeholder="Chez ..."></label>
+          <label for="q-ville"><span data-l="fr">Ville</span><span data-l="en">City</span><input id="q-ville" name="ville" placeholder="Caen"></label>
+        </div>
+        <div>
+          <label style="margin-bottom:8px"><span data-l="fr">Ce qui vous intéresse</span><span data-l="en">What you need</span></label>
+          <div class="chips">
+            <label for="q-site"><input type="checkbox" id="q-site" value="Site web" checked><span data-l="fr">Site web</span><span data-l="en">Website</span></label>
+            <label for="q-qr"><input type="checkbox" id="q-qr" value="Menu QR"><span data-l="fr">Menu QR</span><span data-l="en">QR menu</span></label>
+            <label for="q-photo"><input type="checkbox" id="q-photo" value="Carte photo"><span data-l="fr">Carte photo</span><span data-l="en">Photo menu</span></label>
+            <label for="q-lang"><input type="checkbox" id="q-lang" value="Bilingue"><span data-l="fr">Bilingue</span><span data-l="en">Bilingual</span></label>
+          </div>
+        </div>
+        <label for="q-msg"><span data-l="fr">Un mot sur votre restaurant</span><span data-l="en">A word about your restaurant</span><textarea id="q-msg" name="msg"></textarea></label>
+        <button class="btn" type="submit" style="justify-self:start"><span data-l="fr">Préparer mon message WhatsApp</span><span data-l="en">Prepare my WhatsApp message</span> →</button>
+        <p class="form-note"><span data-l="fr">Le message s'ouvre dans WhatsApp, prêt à envoyer à Hamza. Rien n'est envoyé sans vous.</span><span data-l="en">The message opens in WhatsApp, ready to send to Hamza. Nothing is sent without you.</span></p>
+        <div class="wa-out" id="wa-out" aria-live="polite"></div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="giant" aria-hidden="true">Carte ✱ Blanche</div>
+  <div class="wrap">
+    <span>© 2026 Carte Blanche · <span data-l="fr">Studio web pour restaurants</span><span data-l="en">Web studio for restaurants</span></span>
+    <span>Hamza · +33 6 34 96 26 43</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var root=document.documentElement;
+  function setLang(l){
+    root.lang=l;
+    document.getElementById('lang-fr').setAttribute('aria-pressed',l==='fr');
+    document.getElementById('lang-en').setAttribute('aria-pressed',l==='en');
+    try{localStorage.setItem('cb-lang',l)}catch(e){}
+  }
+  var saved=null;try{saved=localStorage.getItem('cb-lang')}catch(e){}
+  setLang(saved==='en'?'en':'fr');
+  document.getElementById('lang-fr').onclick=function(){setLang('fr')};
+  document.getElementById('lang-en').onclick=function(){setLang('en')};
+
+  var copied=document.getElementById('copied');
+  document.getElementById('copy').addEventListener('click',function(){
+    var num='+33 6 34 96 26 43', fr=root.lang==='fr';
+    function fallback(){
+      var r=document.createRange();r.selectNodeContents(document.getElementById('phone'));
+      var s=getSelection();s.removeAllRanges();s.addRange(r);
+      copied.textContent=fr?'Numéro sélectionné, copiez-le avec Ctrl+C.':'Number selected, copy it with Ctrl+C.';
+    }
+    try{
+      navigator.clipboard.writeText(num).then(function(){copied.textContent=fr?'Numéro copié.':'Number copied.'},fallback);
+    }catch(e){fallback()}
+  });
+
+  document.getElementById('quote').addEventListener('submit',function(e){
+    e.preventDefault();
+    var fr=root.lang==='fr', out=document.getElementById('wa-out');
+    var resto=document.getElementById('q-resto').value.trim();
+    if(!resto){document.getElementById('q-resto').focus();out.className='wa-out on';out.textContent=fr?'Indiquez le nom de votre restaurant.':'Add your restaurant name.';return}
+    var picks=[].slice.call(this.querySelectorAll('.chips input:checked')).map(function(i){return i.value});
+    var ville=document.getElementById('q-ville').value.trim(), msg=document.getElementById('q-msg').value.trim();
+    var text='Bonjour Hamza, je suis '+resto+(ville?' ('+ville+')':'')+'. Je suis intéressé par : '+(picks.join(', ')||'un site')+'.'+(msg?' '+msg:'');
+    var url='https://wa.me/33634962643?text='+encodeURIComponent(text);
+    out.className='wa-out on';
+    out.textContent='';
+    var a=document.createElement('a');a.href=url;a.target='_blank';a.rel='noopener';
+    a.textContent=fr?'Ouvrir WhatsApp avec ce message ↗':'Open WhatsApp with this message ↗';
+    var p=document.createElement('div');p.textContent='« '+text+' »';p.style.marginBottom='8px';
+    out.appendChild(p);out.appendChild(a);
+  });
+})();
+</script>
+
+</body>
+</html>
