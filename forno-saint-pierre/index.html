@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Forno Saint-Pierre · Caen</title>
+<meta name="description" content="Forno Saint-Pierre, Pizzeria au feu de bois à Caen. Démo conçue par Carte Blanche.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=DM+Sans:wght@400;500;700&display=swap">
+<style>
+:root{--bg:#f6e7c8;--fg:#163f29;--accent:#e9452f;--soft:#ecd8b0;--line:rgba(22,63,41,.2);--display:"Bricolage Grotesque",system-ui,sans-serif;--body:"DM Sans",system-ui,sans-serif;--g:clamp(16px,4vw,48px)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font:400 17px/1.65 var(--body);-webkit-font-smoothing:antialiased}
+img,svg{max-width:100%;display:block}a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+html:not([lang="en"]) [data-l="en"],html[lang="en"] [data-l="fr"]{display:none!important}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:var(--g)}
+.demo{background:var(--fg);color:var(--bg);font:500 13px/1.4 var(--body);text-align:center;padding:8px var(--g)}
+.demo a{font-weight:700}
+.top{position:sticky;top:0;z-index:10;background:var(--bg);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:20px;padding-block:14px}
+.brand{font:600 24px/1 var(--display);text-decoration:none}
+.top nav{display:flex;gap:22px;margin-left:auto}.top nav a{text-decoration:none;font-weight:500;font-size:15px}.top nav a:hover{color:var(--accent)}
+.lang{display:flex;border:1.5px solid currentColor;border-radius:99px;overflow:hidden}
+.lang button{all:unset;cursor:pointer;font:600 12px/1 var(--body);padding:7px 10px}
+.lang button[aria-pressed="true"]{background:var(--fg);color:var(--bg)}
+.btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font:600 15px/1 var(--body);padding:14px 22px;border-radius:var(--r,99px);background:var(--accent);color:#fff;border:0;cursor:pointer}
+.btn.alt{background:transparent;color:var(--fg);box-shadow:inset 0 0 0 1.5px var(--fg)}
+.btn:hover{filter:brightness(1.08)}
+.hero{padding-block:clamp(40px,7vw,100px)}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(24px,5vw,70px);align-items:center}
+.kicker{font:600 12px/1 var(--body);letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
+h1{margin:16px 0 0;font:var(--h1w,600) clamp(48px,7.5vw,104px)/.95 var(--display);text-wrap:balance;letter-spacing:var(--h1ls,-.01em)}
+h1 em{font-style:var(--emstyle,italic);color:var(--accent)}
+.lede{max-width:44ch;margin:24px 0 30px;font-size:clamp(17px,1.5vw,19px);opacity:.9}
+.row{display:flex;flex-wrap:wrap;gap:12px}
+.art{max-width:440px;justify-self:center;width:100%}
+section{scroll-margin-top:70px}
+.sec{padding-block:clamp(60px,9vw,110px)}
+h2{margin:10px 0 clamp(26px,4vw,44px);font:var(--h1w,600) clamp(36px,5vw,64px)/1 var(--display);text-wrap:balance}
+.sigs{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.sig{background:var(--soft);border-radius:var(--rc,18px);padding:26px;display:flex;flex-direction:column;gap:8px}
+.sig h3{margin:0;font:600 24px/1.1 var(--display)}.sig p{margin:0;opacity:.8;flex:1}
+.sig .p{font:700 18px/1 var(--body);color:var(--accent);font-variant-numeric:tabular-nums}
+.alt-bg{background:var(--soft)}
+.menu{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,4vw,48px)}
+.menu h3{margin:0 0 14px;font:600 26px/1 var(--display);padding-bottom:12px;border-bottom:2px solid var(--accent)}
+.menu ul{list-style:none;margin:0;padding:0}
+.menu li{display:flex;align-items:baseline;gap:10px;padding:11px 0;border-bottom:1px dashed var(--line)}
+.menu li span.n{min-width:0}
+.menu li i{flex:1;border-bottom:1px dotted var(--line);transform:translateY(-4px);min-width:12px}
+.menu li b{font-variant-numeric:tabular-nums;white-space:nowrap}
+.story .wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,70px)}
+.story blockquote{margin:0;font:500 clamp(24px,3vw,36px)/1.3 var(--display);font-style:var(--emstyle,italic)}
+.info{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.card{border:1.5px solid var(--line);border-radius:var(--rc,18px);padding:24px}
+.card h3{margin:0 0 12px;font:600 22px/1 var(--display)}
+.hrs{display:grid;grid-template-columns:auto 1fr;gap:6px 18px;font-variant-numeric:tabular-nums}
+.phone{font:600 22px/1.3 var(--body);user-select:all}
+footer{border-top:1px solid var(--line);padding-block:26px;font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
+.callbar{display:none}
+:root{--h1w:800;--h1ls:-.03em;--emstyle:normal;--rc:28px}h1{text-transform:lowercase}.sig{background:var(--fg);color:var(--bg)}.sig .p{color:var(--bg);background:var(--accent);align-self:flex-start;padding:8px 12px;border-radius:99px}.alt-bg{background:var(--fg);color:var(--bg)}.alt-bg .menu h3{border-color:var(--accent)}.alt-bg{--line:rgba(246,231,200,.25)}.btn.alt{color:inherit;box-shadow:inset 0 0 0 1.5px currentColor}
+@media (max-width:860px){
+ .top nav{display:none}.lang{margin-left:auto}
+ .hero .wrap,.story .wrap{grid-template-columns:1fr}
+ .art{max-width:300px;grid-row:1}
+ .sigs,.menu,.info{grid-template-columns:1fr}
+ .callbar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:20;gap:10px;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));background:var(--bg);border-top:1px solid var(--line)}
+ .callbar .btn{flex:1;justify-content:center}
+ body{padding-bottom:76px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="demo"><span data-l="fr">Démo · restaurant fictif conçu par <a href="../">Carte Blanche</a>, studio web pour restaurants à Caen.</span><span data-l="en">Demo · fictional restaurant designed by <a href="../">Carte Blanche</a>, a web studio for restaurants in Caen.</span></div>
+<header class="top"><div class="wrap">
+ <a class="brand" href="#">Forno Saint-Pierre</a>
+ <nav><a href="#carte"><span data-l="fr">La carte</span><span data-l="en">Menu</span></a><a href="#histoire"><span data-l="fr">Notre histoire</span><span data-l="en">Our story</span></a><a href="#infos"><span data-l="fr">Infos</span><span data-l="en">Visit</span></a></nav>
+ <div class="lang" role="group" aria-label="Langue"><button type="button" id="fr" aria-pressed="true">FR</button><button type="button" id="en" aria-pressed="false">EN</button></div>
+</div></header>
+<main>
+<section class="hero"><div class="wrap">
+ <div>
+  <div class="kicker"><span data-l="fr">Pizzeria au feu de bois</span><span data-l="en">Wood-fired pizzeria</span> · Caen</div>
+  <h1><span data-l="fr">pâte 48 h.<br>four à <em>450°</em>.</span><span data-l="en">48-hour dough.<br><em>450°</em> oven.</span></h1>
+  <p class="lede"><span data-l="fr">Des pizzas napolitaines cuites en 90 secondes, avec de la farine italienne et des produits normands. À deux pas de l&#x27;église Saint-Pierre.</span><span data-l="en">Neapolitan pizzas baked in 90 seconds, with Italian flour and Normandy produce. A short walk from Saint-Pierre church.</span></p>
+  <div class="row"><a class="btn" href="#carte"><span data-l="fr">Voir la carte</span><span data-l="en">See the menu</span></a><a class="btn alt" href="#infos"><span data-l="fr">Horaires & adresse</span><span data-l="en">Hours & address</span></a></div>
+ </div>
+ <div class="art"><svg viewBox="0 0 400 400" aria-hidden="true"><circle cx="200" cy="200" r="175" fill="var(--soft)"/><circle cx="200" cy="200" r="150" fill="#e8b96b"/><circle cx="200" cy="200" r="122" fill="var(--accent)"/><g fill="#fff6e3"><ellipse cx="160" cy="160" rx="26" ry="20"/><ellipse cx="248" cy="178" rx="24" ry="19"/><ellipse cx="190" cy="250" rx="28" ry="21"/><ellipse cx="255" cy="250" rx="18" ry="15"/></g><g fill="var(--fg)"><ellipse cx="205" cy="200" rx="14" ry="7" transform="rotate(-30 205 200)"/><ellipse cx="140" cy="215" rx="13" ry="6" transform="rotate(40 140 215)"/><ellipse cx="225" cy="135" rx="12" ry="6" transform="rotate(15 225 135)"/></g><g fill="#2a1a10" opacity=".35"><circle cx="90" cy="150" r="7"/><circle cx="305" cy="240" r="9"/><circle cx="250" cy="320" r="6"/><circle cx="130" cy="300" r="8"/></g></svg></div>
+</div></section>
+<section class="sec" id="signatures"><div class="wrap">
+ <div class="kicker"><span data-l="fr">Signatures</span><span data-l="en">Signatures</span></div><h2><span data-l="fr">Ce qu'on vient chercher ici</span><span data-l="en">What people come for</span></h2>
+ <div class="sigs"><article class="sig"><h3><span data-l="fr">La Normande</span><span data-l="en">La Normande</span></h3><p><span data-l="fr">Crème, camembert, pommes, lardons.</span><span data-l="en">Cream, camembert, apple, bacon.</span></p><span class="p">15 €</span></article><article class="sig"><h3><span data-l="fr">Diavola</span><span data-l="en">Diavola</span></h3><p><span data-l="fr">Tomate, mozzarella, spianata piquante.</span><span data-l="en">Tomato, mozzarella, spicy salami.</span></p><span class="p">13 €</span></article><article class="sig"><h3><span data-l="fr">Burrata</span><span data-l="en">Burrata</span></h3><p><span data-l="fr">Tomates cerises, burrata entière, basilic.</span><span data-l="en">Cherry tomatoes, whole burrata, basil.</span></p><span class="p">17 €</span></article></div>
+</div></section>
+<section class="sec alt-bg" id="carte"><div class="wrap">
+ <div class="kicker"><span data-l="fr">La carte</span><span data-l="en">Menu</span></div><h2><span data-l="fr">Toute la carte</span><span data-l="en">The full menu</span></h2>
+ <div class="menu"><div><h3><span data-l="fr">Pizzas rouges</span><span data-l="en">Red pizzas</span></h3><ul><li><span class="n"><span data-l="fr">Margherita</span><span data-l="en">Margherita</span></span><i></i><b>11 €</b></li><li><span class="n"><span data-l="fr">Diavola</span><span data-l="en">Diavola</span></span><i></i><b>13 €</b></li><li><span class="n"><span data-l="fr">Regina</span><span data-l="en">Regina (ham &amp; mushrooms)</span></span><i></i><b>13 €</b></li><li><span class="n"><span data-l="fr">Burrata</span><span data-l="en">Burrata</span></span><i></i><b>17 €</b></li></ul></div><div><h3><span data-l="fr">Pizzas blanches</span><span data-l="en">White pizzas</span></h3><ul><li><span class="n"><span data-l="fr">La Normande</span><span data-l="en">La Normande</span></span><i></i><b>15 €</b></li><li><span class="n"><span data-l="fr">Tartufo</span><span data-l="en">Tartufo (truffle cream)</span></span><i></i><b>18 €</b></li><li><span class="n"><span data-l="fr">Quattro formaggi</span><span data-l="en">Four cheese</span></span><i></i><b>14 €</b></li></ul></div><div><h3><span data-l="fr">Dolci</span><span data-l="en">Desserts</span></h3><ul><li><span class="n"><span data-l="fr">Tiramisu maison</span><span data-l="en">House tiramisu</span></span><i></i><b>7 €</b></li><li><span class="n"><span data-l="fr">Pizza Nutella</span><span data-l="en">Nutella pizza</span></span><i></i><b>8 €</b></li></ul></div></div>
+ <p style="margin-top:28px;font-size:14px;opacity:.7"><span data-l="fr">Prix nets, service compris. Carte de démonstration.</span><span data-l="en">Prices include service. Demonstration menu.</span></p>
+</div></section>
+<section class="sec story" id="histoire"><div class="wrap">
+ <div><div class="kicker"><span data-l="fr">Notre histoire</span><span data-l="en">Our story</span></div><h2><span data-l="fr">La maison</span><span data-l="en">The house</span></h2></div>
+ <blockquote><span data-l="fr">Notre pâte repose 48 heures avant d&#x27;aller au four. Résultat : une pizza légère, une croûte qui gonfle et des taches de léopard.</span><span data-l="en">Our dough rests for 48 hours before it meets the oven. The result: a light pizza, a puffy crust and leopard spots.</span></blockquote>
+</div></section>
+<section class="sec alt-bg" id="infos"><div class="wrap">
+ <div class="kicker"><span data-l="fr">Infos</span><span data-l="en">Visit</span></div><h2><span data-l="fr">Venir nous voir</span><span data-l="en">Come and see us</span></h2>
+ <div class="info">
+  <div class="card"><h3><span data-l="fr">Horaires</span><span data-l="en">Opening hours</span></h3><div class="hrs"><span><span data-l="fr">Mar – Jeu</span><span data-l="en">Tue – Thu</span></span><span>18:30–22:30</span><span><span data-l="fr">Ven – Sam</span><span data-l="en">Fri – Sat</span></span><span>12:00–14:00 · 18:30–23:00</span><span><span data-l="fr">Dim – Lun</span><span data-l="en">Sun – Mon</span></span><span>Fermé / Closed</span></div></div>
+  <div class="card"><h3><span data-l="fr">Adresse</span><span data-l="en">Address</span></h3><p style="margin:0 0 10px">Quartier Saint-Pierre · 14000 Caen</p><p class="phone">02 31 XX XX XX</p><p style="font-size:13px;opacity:.7;margin:4px 0 16px"><span data-l="fr">Numéro fictif : ce restaurant est un concept.</span><span data-l="en">Placeholder number: this restaurant is a concept.</span></p><a class="btn" href="https://www.google.com/maps/search/?api=1&query=Eglise+Saint-Pierre+Caen" target="_blank" rel="noopener"><span data-l="fr">Itinéraire</span><span data-l="en">Directions</span> ↗</a></div>
+ </div>
+</div></section>
+</main>
+<footer><div class="wrap"><span>© 2026 Forno Saint-Pierre · Caen</span><span><span data-l="fr">Site conçu par</span><span data-l="en">Website by</span> <a href="../">Carte Blanche</a></span></div></footer>
+<div class="callbar"><a class="btn" href="#carte"><span data-l="fr">La carte</span><span data-l="en">Menu</span></a><a class="btn alt" href="https://www.google.com/maps/search/?api=1&query=Eglise+Saint-Pierre+Caen" target="_blank" rel="noopener"><span data-l="fr">Itinéraire</span><span data-l="en">Directions</span></a></div>
+<script>
+(function(){var r=document.documentElement;function s(l){r.lang=l;document.getElementById('fr').setAttribute('aria-pressed',l==='fr');document.getElementById('en').setAttribute('aria-pressed',l==='en');try{localStorage.setItem('cb-lang',l)}catch(e){}}
+var v=null;try{v=localStorage.getItem('cb-lang')}catch(e){}s(v==='en'?'en':'fr');
+document.getElementById('fr').onclick=function(){s('fr')};document.getElementById('en').onclick=function(){s('en')};})();
+</script>
+</body>
+</html>

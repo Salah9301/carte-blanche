@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Crêperie de l&#x27;Abbaye · Caen</title>
+<meta name="description" content="Crêperie de l&#x27;Abbaye, Crêperie normande à Caen. Démo conçue par Carte Blanche.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Work+Sans:wght@400;500;600&display=swap">
+<style>
+:root{--bg:#fbf6ea;--fg:#173a7a;--accent:#c9822e;--soft:#e9eef8;--line:rgba(23,58,122,.2);--display:"Young Serif",Georgia,serif;--body:"Work Sans",system-ui,sans-serif;--g:clamp(16px,4vw,48px)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font:400 17px/1.65 var(--body);-webkit-font-smoothing:antialiased}
+img,svg{max-width:100%;display:block}a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+html:not([lang="en"]) [data-l="en"],html[lang="en"] [data-l="fr"]{display:none!important}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:var(--g)}
+.demo{background:var(--fg);color:var(--bg);font:500 13px/1.4 var(--body);text-align:center;padding:8px var(--g)}
+.demo a{font-weight:700}
+.top{position:sticky;top:0;z-index:10;background:var(--bg);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:20px;padding-block:14px}
+.brand{font:600 24px/1 var(--display);text-decoration:none}
+.top nav{display:flex;gap:22px;margin-left:auto}.top nav a{text-decoration:none;font-weight:500;font-size:15px}.top nav a:hover{color:var(--accent)}
+.lang{display:flex;border:1.5px solid currentColor;border-radius:99px;overflow:hidden}
+.lang button{all:unset;cursor:pointer;font:600 12px/1 var(--body);padding:7px 10px}
+.lang button[aria-pressed="true"]{background:var(--fg);color:var(--bg)}
+.btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font:600 15px/1 var(--body);padding:14px 22px;border-radius:var(--r,99px);background:var(--accent);color:#fff;border:0;cursor:pointer}
+.btn.alt{background:transparent;color:var(--fg);box-shadow:inset 0 0 0 1.5px var(--fg)}
+.btn:hover{filter:brightness(1.08)}
+.hero{padding-block:clamp(40px,7vw,100px)}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(24px,5vw,70px);align-items:center}
+.kicker{font:600 12px/1 var(--body);letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
+h1{margin:16px 0 0;font:var(--h1w,600) clamp(48px,7.5vw,104px)/.95 var(--display);text-wrap:balance;letter-spacing:var(--h1ls,-.01em)}
+h1 em{font-style:var(--emstyle,italic);color:var(--accent)}
+.lede{max-width:44ch;margin:24px 0 30px;font-size:clamp(17px,1.5vw,19px);opacity:.9}
+.row{display:flex;flex-wrap:wrap;gap:12px}
+.art{max-width:440px;justify-self:center;width:100%}
+section{scroll-margin-top:70px}
+.sec{padding-block:clamp(60px,9vw,110px)}
+h2{margin:10px 0 clamp(26px,4vw,44px);font:var(--h1w,600) clamp(36px,5vw,64px)/1 var(--display);text-wrap:balance}
+.sigs{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.sig{background:var(--soft);border-radius:var(--rc,18px);padding:26px;display:flex;flex-direction:column;gap:8px}
+.sig h3{margin:0;font:600 24px/1.1 var(--display)}.sig p{margin:0;opacity:.8;flex:1}
+.sig .p{font:700 18px/1 var(--body);color:var(--accent);font-variant-numeric:tabular-nums}
+.alt-bg{background:var(--soft)}
+.menu{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,4vw,48px)}
+.menu h3{margin:0 0 14px;font:600 26px/1 var(--display);padding-bottom:12px;border-bottom:2px solid var(--accent)}
+.menu ul{list-style:none;margin:0;padding:0}
+.menu li{display:flex;align-items:baseline;gap:10px;padding:11px 0;border-bottom:1px dashed var(--line)}
+.menu li span.n{min-width:0}
+.menu li i{flex:1;border-bottom:1px dotted var(--line);transform:translateY(-4px);min-width:12px}
+.menu li b{font-variant-numeric:tabular-nums;white-space:nowrap}
+.story .wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,70px)}
+.story blockquote{margin:0;font:500 clamp(24px,3vw,36px)/1.3 var(--display);font-style:var(--emstyle,italic)}
+.info{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.card{border:1.5px solid var(--line);border-radius:var(--rc,18px);padding:24px}
+.card h3{margin:0 0 12px;font:600 22px/1 var(--display)}
+.hrs{display:grid;grid-template-columns:auto 1fr;gap:6px 18px;font-variant-numeric:tabular-nums}
+.phone{font:600 22px/1.3 var(--body);user-select:all}
+footer{border-top:1px solid var(--line);padding-block:26px;font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
+.callbar{display:none}
+.top{background:repeating-linear-gradient(90deg,var(--bg) 0 22px,var(--soft) 22px 44px)}.alt-bg{background:repeating-linear-gradient(90deg,#f7f0de 0 30px,var(--soft) 30px 60px)}.sig{background:#fff;border:2px solid var(--fg);box-shadow:6px 6px 0 var(--fg)}.menu>div{background:#fff;padding:22px;border:2px solid var(--fg);border-radius:14px}.btn{--r:10px}
+@media (max-width:860px){
+ .top nav{display:none}.lang{margin-left:auto}
+ .hero .wrap,.story .wrap{grid-template-columns:1fr}
+ .art{max-width:300px;grid-row:1}
+ .sigs,.menu,.info{grid-template-columns:1fr}
+ .callbar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:20;gap:10px;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));background:var(--bg);border-top:1px solid var(--line)}
+ .callbar .btn{flex:1;justify-content:center}
+ body{padding-bottom:76px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="demo"><span data-l="fr">Démo · restaurant fictif conçu par <a href="../">Carte Blanche</a>, studio web pour restaurants à Caen.</span><span data-l="en">Demo · fictional restaurant designed by <a href="../">Carte Blanche</a>, a web studio for restaurants in Caen.</span></div>
+<header class="top"><div class="wrap">
+ <a class="brand" href="#">Crêperie de l&#x27;Abbaye</a>
+ <nav><a href="#carte"><span data-l="fr">La carte</span><span data-l="en">Menu</span></a><a href="#histoire"><span data-l="fr">Notre histoire</span><span data-l="en">Our story</span></a><a href="#infos"><span data-l="fr">Infos</span><span data-l="en">Visit</span></a></nav>
+ <div class="lang" role="group" aria-label="Langue"><button type="button" id="fr" aria-pressed="true">FR</button><button type="button" id="en" aria-pressed="false">EN</button></div>
+</div></header>
+<main>
+<section class="hero"><div class="wrap">
+ <div>
+  <div class="kicker"><span data-l="fr">Crêperie normande</span><span data-l="en">Normandy crêperie</span> · Caen</div>
+  <h1><span data-l="fr">Galettes,<br>cidre &amp; <em>beurre salé.</em></span><span data-l="en">Galettes,<br>cider &amp; <em>salted butter.</em></span></h1>
+  <p class="lede"><span data-l="fr">Blé noir, beurre d&#x27;Isigny et cidre du Pays d&#x27;Auge. Une crêperie familiale à l&#x27;ombre de l&#x27;Abbaye-aux-Hommes.</span><span data-l="en">Buckwheat, Isigny butter and Pays d&#x27;Auge cider. A family crêperie in the shadow of the Abbaye-aux-Hommes.</span></p>
+  <div class="row"><a class="btn" href="#carte"><span data-l="fr">Voir la carte</span><span data-l="en">See the menu</span></a><a class="btn alt" href="#infos"><span data-l="fr">Horaires & adresse</span><span data-l="en">Hours & address</span></a></div>
+ </div>
+ <div class="art"><svg viewBox="0 0 400 400" aria-hidden="true"><circle cx="200" cy="200" r="175" fill="var(--soft)"/><path d="M60 230 200 90 340 230 200 330z" fill="#d99a3d"/><path d="M60 230 200 90 340 230 200 330z" fill="none" stroke="#b8742a" stroke-width="6"/><rect x="140" y="170" width="120" height="120" transform="rotate(45 200 230)" fill="#f2c26b" opacity=".6"/><circle cx="200" cy="215" r="34" fill="#fffaf0"/><circle cx="200" cy="215" r="15" fill="#f0a500"/><g stroke="var(--fg)" stroke-width="5" opacity=".18"><path d="M20 60h360M20 360h360"/></g></svg></div>
+</div></section>
+<section class="sec" id="signatures"><div class="wrap">
+ <div class="kicker"><span data-l="fr">Signatures</span><span data-l="en">Signatures</span></div><h2><span data-l="fr">Ce qu'on vient chercher ici</span><span data-l="en">What people come for</span></h2>
+ <div class="sigs"><article class="sig"><h3><span data-l="fr">La Normande</span><span data-l="en">La Normande</span></h3><p><span data-l="fr">Camembert, pommes poêlées, andouille de Vire.</span><span data-l="en">Camembert, pan-fried apple, Vire andouille.</span></p><span class="p">13,50 €</span></article><article class="sig"><h3><span data-l="fr">La Complète</span><span data-l="en">La Complète</span></h3><p><span data-l="fr">Jambon, emmental, œuf miroir.</span><span data-l="en">Ham, emmental, sunny-side egg.</span></p><span class="p">9,50 €</span></article><article class="sig"><h3><span data-l="fr">Caramel beurre salé</span><span data-l="en">Salted-butter caramel</span></h3><p><span data-l="fr">Caramel maison, chantilly.</span><span data-l="en">House caramel, whipped cream.</span></p><span class="p">6,50 €</span></article></div>
+</div></section>
+<section class="sec alt-bg" id="carte"><div class="wrap">
+ <div class="kicker"><span data-l="fr">La carte</span><span data-l="en">Menu</span></div><h2><span data-l="fr">Toute la carte</span><span data-l="en">The full menu</span></h2>
+ <div class="menu"><div><h3><span data-l="fr">Galettes de blé noir</span><span data-l="en">Buckwheat galettes</span></h3><ul><li><span class="n"><span data-l="fr">La Complète</span><span data-l="en">Ham, cheese, egg</span></span><i></i><b>9,50 €</b></li><li><span class="n"><span data-l="fr">La Normande</span><span data-l="en">Camembert, apple, andouille</span></span><i></i><b>13,50 €</b></li><li><span class="n"><span data-l="fr">La Saint-Jacques</span><span data-l="en">Scallops, leek fondue</span></span><i></i><b>16 €</b></li><li><span class="n"><span data-l="fr">La Chèvre-miel</span><span data-l="en">Goat cheese and honey</span></span><i></i><b>11 €</b></li></ul></div><div><h3><span data-l="fr">Crêpes de froment</span><span data-l="en">Sweet crêpes</span></h3><ul><li><span class="n"><span data-l="fr">Beurre-sucre</span><span data-l="en">Butter and sugar</span></span><i></i><b>4,50 €</b></li><li><span class="n"><span data-l="fr">Caramel beurre salé</span><span data-l="en">Salted-butter caramel</span></span><i></i><b>6,50 €</b></li><li><span class="n"><span data-l="fr">Flambée au calvados</span><span data-l="en">Flambéed with calvados</span></span><i></i><b>8 €</b></li></ul></div><div><h3><span data-l="fr">À boire</span><span data-l="en">Drinks</span></h3><ul><li><span class="n"><span data-l="fr">Bolée de cidre brut</span><span data-l="en">Bowl of dry cider</span></span><i></i><b>4 €</b></li><li><span class="n"><span data-l="fr">Pommeau de Normandie</span><span data-l="en">Pommeau</span></span><i></i><b>5 €</b></li></ul></div></div>
+ <p style="margin-top:28px;font-size:14px;opacity:.7"><span data-l="fr">Prix nets, service compris. Carte de démonstration.</span><span data-l="en">Prices include service. Demonstration menu.</span></p>
+</div></section>
+<section class="sec story" id="histoire"><div class="wrap">
+ <div><div class="kicker"><span data-l="fr">Notre histoire</span><span data-l="en">Our story</span></div><h2><span data-l="fr">La maison</span><span data-l="en">The house</span></h2></div>
+ <blockquote><span data-l="fr">La recette de la pâte vient de notre grand-mère. Le blé noir est moulu en Normandie et chaque galette est tournée à la commande.</span><span data-l="en">The batter recipe comes from our grandmother. The buckwheat is milled in Normandy and every galette is made to order.</span></blockquote>
+</div></section>
+<section class="sec alt-bg" id="infos"><div class="wrap">
+ <div class="kicker"><span data-l="fr">Infos</span><span data-l="en">Visit</span></div><h2><span data-l="fr">Venir nous voir</span><span data-l="en">Come and see us</span></h2>
+ <div class="info">
+  <div class="card"><h3><span data-l="fr">Horaires</span><span data-l="en">Opening hours</span></h3><div class="hrs"><span><span data-l="fr">Mer – Dim</span><span data-l="en">Wed – Sun</span></span><span>12:00–14:30 · 18:30–21:30</span><span><span data-l="fr">Lun – Mar</span><span data-l="en">Mon – Tue</span></span><span>Fermé / Closed</span></div></div>
+  <div class="card"><h3><span data-l="fr">Adresse</span><span data-l="en">Address</span></h3><p style="margin:0 0 10px">Près de l'Abbaye-aux-Hommes · 14000 Caen</p><p class="phone">02 31 XX XX XX</p><p style="font-size:13px;opacity:.7;margin:4px 0 16px"><span data-l="fr">Numéro fictif : ce restaurant est un concept.</span><span data-l="en">Placeholder number: this restaurant is a concept.</span></p><a class="btn" href="https://www.google.com/maps/search/?api=1&query=Abbaye+aux+Hommes+Caen" target="_blank" rel="noopener"><span data-l="fr">Itinéraire</span><span data-l="en">Directions</span> ↗</a></div>
+ </div>
+</div></section>
+</main>
+<footer><div class="wrap"><span>© 2026 Crêperie de l&#x27;Abbaye · Caen</span><span><span data-l="fr">Site conçu par</span><span data-l="en">Website by</span> <a href="../">Carte Blanche</a></span></div></footer>
+<div class="callbar"><a class="btn" href="#carte"><span data-l="fr">La carte</span><span data-l="en">Menu</span></a><a class="btn alt" href="https://www.google.com/maps/search/?api=1&query=Abbaye+aux+Hommes+Caen" target="_blank" rel="noopener"><span data-l="fr">Itinéraire</span><span data-l="en">Directions</span></a></div>
+<script>
+(function(){var r=document.documentElement;function s(l){r.lang=l;document.getElementById('fr').setAttribute('aria-pressed',l==='fr');document.getElementById('en').setAttribute('aria-pressed',l==='en');try{localStorage.setItem('cb-lang',l)}catch(e){}}
+var v=null;try{v=localStorage.getItem('cb-lang')}catch(e){}s(v==='en'?'en':'fr');
+document.getElementById('fr').onclick=function(){s('fr')};document.getElementById('en').onclick=function(){s('en')};})();
+</script>
+</body>
+</html>
