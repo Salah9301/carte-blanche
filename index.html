@@ -210,6 +210,28 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-bet
 .giant{font:900 clamp(60px,17vw,250px)/.8 var(--display);font-stretch:52%;text-transform:uppercase;color:var(--sauce-deep);text-align:center;padding-top:30px;letter-spacing:-.01em;white-space:nowrap;overflow:hidden}
 
 /* ---------- responsive ---------- */
+/* ---------- before / after ---------- */
+.ba{display:grid;grid-template-columns:1fr 1fr;gap:clamp(18px,3vw,36px);margin-top:26px}
+.ba figure{margin:0}
+.ba .screen{box-shadow:10px 10px 0 var(--sauce-deep)}
+.ba .shot{position:relative;aspect-ratio:16/10;overflow:hidden;background:#fff}
+.ba .shot img{width:100%;height:100%;object-fit:cover;object-position:top}
+.ba .tag{position:absolute;top:12px;left:12px;font:700 11px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;padding:7px 10px;border-radius:99px;border:2px solid var(--ink)}
+.ba .old .tag{background:var(--cream);color:var(--sauce)}
+.ba .new .tag{background:var(--mustard);color:var(--ink)}
+.ba .phone{position:absolute;right:14px;bottom:-1px;width:24%;border:3px solid var(--ink);border-bottom:0;border-radius:14px 14px 0 0;overflow:hidden;box-shadow:-6px 0 0 rgba(27,7,8,.35)}
+.ba .phone img{width:100%;height:auto;aspect-ratio:390/600;object-fit:cover;object-position:top}
+.ba .alert{position:absolute;right:12px;top:12px;background:#d23a2e;color:#fff;font:800 13px/1 var(--body);padding:8px 12px;border-radius:99px;border:2px solid var(--ink)}
+.ba figcaption{margin-top:18px}
+.ba figcaption h4{margin:0 0 10px;font:900 26px/1 var(--display);font-stretch:70%;text-transform:uppercase}
+.ba ul{list-style:none;padding:0;margin:0;display:grid;gap:9px;font-size:15px}
+.ba li{display:grid;grid-template-columns:24px 1fr;gap:10px}
+.ba .old li::before{content:"✕";display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--ink);color:var(--cream);font:800 12px/1 var(--body);margin-top:2px}
+.ba .new li::before{content:"✓";display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--mustard);color:var(--ink);font:800 13px/1 var(--body);margin-top:2px}
+.ba-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:28px;align-items:center}
+.ba-note{font-size:13px;opacity:.8;margin-top:16px;max-width:80ch}
+@media (max-width:900px){.ba{grid-template-columns:1fr}}
+
 @media (max-width:900px){
   .bar nav{display:none}
   .lang{margin-left:auto}
@@ -405,6 +427,43 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-bet
         </a>
       </div>
       <p class="menu-note" style="margin-left:0"><span data-l="fr">Les concepts sont des restaurants fictifs créés pour la démonstration.</span><span data-l="en">Concepts are fictional restaurants built for demonstration.</span></p>
+      <div class="more-head" id="avant-apres"><h3 class="label"><span data-l="fr">Avant / Après</span><span data-l="en">Before / After</span></h3><p><span data-l="fr">Votre restaurant a déjà un site, mais il est vieux ou cassé ? Voici ce qu'on en fait.</span><span data-l="en">Your restaurant already has a website, but it's old or broken? Here's what we do with it.</span></p></div>
+      <div class="ba">
+        <figure class="old">
+          <a class="screen" href="https://oriental-couscous.fr/" target="_blank" rel="noopener">
+            <div class="chrome"><i></i><i></i><i></i><span>oriental-couscous.fr</span></div>
+            <div class="shot"><img src="img/oc-avant.jpg" alt="Haut de la page d'accueil actuelle de L'Oriental Couscous : 34 messages d'erreur PHP" loading="lazy"><span class="tag"><span data-l="fr">Avant</span><span data-l="en">Before</span></span><span class="alert">34 <span data-l="fr">erreurs</span><span data-l="en">errors</span></span></div>
+          </a>
+          <figcaption>
+            <h4><span data-l="fr">Le site actuel</span><span data-l="en">The current site</span></h4>
+            <ul>
+              <li><span><span data-l="fr">34 messages d'erreur avant même de voir un plat</span><span data-l="en">34 error messages before you even see a dish</span></span></li>
+              <li><span><span data-l="fr">La carte éclatée en plusieurs PDF, illisibles sur téléphone</span><span data-l="en">The menu split into several PDFs, unreadable on a phone</span></span></li>
+              <li><span><span data-l="fr">Carte anglaise de janvier 2023, prix périmés</span><span data-l="en">English menu from January 2023, outdated prices</span></span></li>
+            </ul>
+          </figcaption>
+        </figure>
+        <figure class="new">
+          <a class="screen" href="oriental-couscous/" target="_blank" rel="noopener">
+            <div class="chrome"><i></i><i></i><i></i><span>oriental-couscous · Carte Blanche</span></div>
+            <div class="shot"><img src="img/oc-apres.jpg" alt="Proposition Carte Blanche pour L'Oriental Couscous, version ordinateur" loading="lazy"><span class="tag"><span data-l="fr">Après</span><span data-l="en">After</span></span><span class="phone"><img src="img/oc-apres-mobile.jpg" alt="La même proposition sur téléphone" loading="lazy"></span></div>
+          </a>
+          <figcaption>
+            <h4><span data-l="fr">Notre proposition</span><span data-l="en">Our proposal</span></h4>
+            <ul>
+              <li><span><span data-l="fr">Zéro erreur, une page rapide sur téléphone</span><span data-l="en">No errors, a fast page on phones</span></span></li>
+              <li><span><span data-l="fr">La carte en plein écran, en français et en anglais</span><span data-l="en">A full-screen menu, in French and English</span></span></li>
+              <li><span><span data-l="fr">Ouvert ou fermé en direct, boutons Appeler et Itinéraire</span><span data-l="en">Live open/closed status, Call and Directions buttons</span></span></li>
+            </ul>
+          </figcaption>
+        </figure>
+      </div>
+      <div class="ba-cta">
+        <a class="btn" href="oriental-couscous/avant-apres/" target="_blank" rel="noopener"><span data-l="fr">Voir la comparaison complète</span><span data-l="en">See the full comparison</span> ↗</a>
+        <a class="btn ghost" href="oriental-couscous/" target="_blank" rel="noopener"><span data-l="fr">Ouvrir le nouveau site</span><span data-l="en">Open the new site</span> ↗</a>
+      </div>
+      <p class="ba-note"><span data-l="fr">L'Oriental Couscous, 6 quai Amiral Hamelin, Caen. Proposition (maquette) non encore validée par le restaurant ; haut de page actuel reconstitué d'après le site relevé le 7 octobre 2026.</span><span data-l="en">L'Oriental Couscous, 6 quai Amiral Hamelin, Caen. Proposal (mock-up) not yet approved by the restaurant; current page top reconstructed from the site as checked on 7 October 2026.</span></p>
+
     </div>
     </div>
   </section>
