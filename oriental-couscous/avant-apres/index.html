@@ -74,6 +74,24 @@ h1 em{font-style:normal;color:var(--accent2)}
 .verdict h3{font-family:var(--serif);font-weight:400;font-size:clamp(1.6rem,3.4vw,2.3rem);margin-bottom:12px}
 .verdict p{color:var(--muted);max-width:62ch;margin:0 auto 22px}
 .verdict .links{justify-content:center}
+.more{margin-top:80px}
+.more-head{text-align:center;margin:70px 0 30px}
+.more-head h2{font-family:var(--serif);font-weight:400;font-size:clamp(1.9rem,4.2vw,3rem);line-height:1.1;margin-top:14px}
+.more-head h2 em{font-style:normal;color:var(--accent2)}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;font-size:.9rem;color:var(--muted)}
+.card b{display:block;color:var(--text);font-size:1rem;margin-bottom:6px}
+.steps{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.steps li{background:var(--card);border:1px solid var(--gold-soft);border-radius:18px;padding:26px;color:var(--muted);font-size:.92rem}
+.steps b{display:block;color:var(--text);font-size:1.1rem;margin:12px 0 6px}
+.num{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--accent);color:#1a1004;font-weight:700}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:70px}
+.card.big{padding:32px}
+.card.big h3{font-family:var(--serif);font-weight:400;font-size:1.6rem;color:var(--text);margin:12px 0 10px;line-height:1.2}
+.card.big p{margin-bottom:16px}
+.card .eyebrow::after{display:none}
+@media (max-width:900px){.grid{grid-template-columns:1fr 1fr}.steps,.split{grid-template-columns:1fr}}
+@media (max-width:520px){.grid{grid-template-columns:1fr}}
 footer{border-top:1px solid var(--line);padding:28px 0 40px;font-size:.78rem;color:var(--muted)}
 footer a{color:var(--accent2)}
 
@@ -139,6 +157,47 @@ footer a{color:var(--accent2)}
       <div class="links"><a class="btn btn-primary" href="../"><span data-l="fr">Ouvrir la proposition</span><span data-l="en">Open the proposal</span> →</a></div>
     </div>
   </div>
+
+  <section class="more">
+    <div class="more-head">
+      <p class="eyebrow"><span data-l="fr">Ce que vous recevez</span><span data-l="en">What you get</span></p>
+      <h2><span data-l="fr">Tout ce qu'il faut pour <em>remplir la salle.</em></span><span data-l="en">Everything you need to <em>fill the room.</em></span></h2>
+    </div>
+    <div class="grid">
+      <div class="card"><b><span data-l="fr">Un site à votre image</span><span data-l="en">A site that looks like you</span></b><span data-l="fr">Vos couleurs, votre histoire, votre équipe : Vincent, David, Elena et l'héritage de Malika Kouba.</span><span data-l="en">Your colours, your story, your team: Vincent, David, Elena and Malika Kouba's legacy.</span></div>
+      <div class="card"><b><span data-l="fr">La carte digitale + QR code</span><span data-l="en">Digital menu + QR code</span></b><span data-l="fr">Un QR code sur la table ouvre la carte sur le téléphone. Vous changez un prix, il change partout, sans réimprimer.</span><span data-l="en">A QR code on the table opens the menu on any phone. Change a price once, it updates everywhere, no reprinting.</span></div>
+      <div class="card"><b><span data-l="fr">Les photos de vos plats</span><span data-l="en">Photos of your dishes</span></b><span data-l="fr">On remplace les illustrations par vos vrais couscous, en grand, pour donner faim.</span><span data-l="en">We replace the illustrations with your real couscous, shown large, to make people hungry.</span></div>
+      <div class="card"><b><span data-l="fr">Appeler, venir, commander</span><span data-l="en">Call, visit, order</span></b><span data-l="fr">Boutons toujours visibles pour appeler, lancer l'itinéraire ou commander sur Uber Eats et Deliveroo.</span><span data-l="en">Always-visible buttons to call, get directions or order on Uber Eats and Deliveroo.</span></div>
+      <div class="card"><b><span data-l="fr">Français et anglais</span><span data-l="en">French and English</span></b><span data-l="fr">Pour les touristes du port et du château, avec les mêmes prix dans les deux langues.</span><span data-l="en">For tourists from the marina and the castle, with the same prices in both languages.</span></div>
+      <div class="card"><b><span data-l="fr">Horaires en direct</span><span data-l="en">Live opening hours</span></b><span data-l="fr">« Ouvert jusqu'à 22h » ou « Fermé, ouvre mercredi » : le client sait tout de suite.</span><span data-l="en">"Open until 10 pm" or "Closed, opens Wednesday": customers know at a glance.</span></div>
+      <div class="card"><b><span data-l="fr">Rapide sur téléphone</span><span data-l="en">Fast on phones</span></b><span data-l="fr">Une page légère, sans extension WordPress, sans licence à renouveler, sans message d'erreur.</span><span data-l="en">A light page, no WordPress plugin, no licence to renew, no error messages.</span></div>
+      <div class="card"><b><span data-l="fr">On s'occupe des changements</span><span data-l="en">We handle the changes</span></b><span data-l="fr">Nouveau plat, nouveaux prix, fermeture exceptionnelle : vous nous écrivez, on met à jour.</span><span data-l="en">A new dish, new prices, a special closure: you message us, we update it.</span></div>
+    </div>
+
+    <div class="more-head">
+      <p class="eyebrow"><span data-l="fr">Comment ça marche</span><span data-l="en">How it works</span></p>
+      <h2><span data-l="fr">Trois étapes, <em>zéro technique pour vous.</em></span><span data-l="en">Three steps, <em>nothing technical for you.</em></span></h2>
+    </div>
+    <ol class="steps">
+      <li><span class="num">1</span><b><span data-l="fr">On passe vous voir</span><span data-l="en">We visit you</span></b><span data-l="fr">On relit ensemble la carte, les prix et les horaires, et on photographie vos plats sur place.</span><span data-l="en">We go through your menu, prices and hours together, and photograph your dishes on site.</span></li>
+      <li><span class="num">2</span><b><span data-l="fr">On finalise votre site</span><span data-l="en">We finish your site</span></b><span data-l="fr">On part de cette maquette, déjà prête, et on y met vos vraies photos et votre carte complète.</span><span data-l="en">We start from this ready-made mock-up and add your real photos and full menu.</span></li>
+      <li><span class="num">3</span><b><span data-l="fr">On le met en ligne</span><span data-l="en">We put it online</span></b><span data-l="fr">Votre site remplace l'ancien, avec votre QR code prêt à imprimer pour les tables.</span><span data-l="en">Your new site replaces the old one, with a QR code ready to print for your tables.</span></li>
+    </ol>
+
+    <div class="split">
+      <div class="card big">
+        <p class="eyebrow"><span data-l="fr">Le prix</span><span data-l="en">Pricing</span></p>
+        <h3><span data-l="fr">Un prix clair, sur devis, sans frais cachés.</span><span data-l="en">A clear quote, no hidden fees.</span></h3>
+        <p><span data-l="fr">Un food truck n'a pas besoin du même site qu'un restaurant de 120 couverts. On vous donne un prix précis après avoir vu votre restaurant et votre carte.</span><span data-l="en">A food truck doesn't need the same site as a 120-seat restaurant. We give you a precise price once we've seen your restaurant and your menu.</span></p>
+      </div>
+      <div class="card big">
+        <p class="eyebrow"><span data-l="fr">Déjà en ligne</span><span data-l="en">Already live</span></p>
+        <h3>Chez Abbas, <span data-l="fr">avenue de la Libération</span><span data-l="en">avenue de la Libération</span></h3>
+        <p><span data-l="fr">Nous avons réalisé le site de ce kebab de quartier, à 10 minutes à pied d'ici, avec sa carte en plein écran.</span><span data-l="en">We built the site for this neighbourhood kebab house, a 10-minute walk from here, with its full-screen menu.</span></p>
+        <a class="btn btn-ghost" href="../../chez-abbas/" target="_blank" rel="noopener"><span data-l="fr">Voir Chez Abbas</span><span data-l="en">See Chez Abbas</span> ↗</a>
+      </div>
+    </div>
+  </section>
 
   <div class="verdict">
     <h3><span data-l="fr">Votre cuisine mérite mieux qu'un message d'erreur.</span><span data-l="en">Your cooking deserves better than an error message.</span></h3>
